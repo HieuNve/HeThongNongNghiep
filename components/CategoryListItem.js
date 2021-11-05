@@ -2,18 +2,26 @@ import React, {Component} from 'react';
 import {
     View,
     Text,
-    StyleSheet
+    StyleSheet, Alert
 } from "react-native"
 import farm from "../assets/farm.png"
 import {Image} from "react-native";
+import {TouchableOpacity} from "react-native-web";
 
 export default function CategoryListItem(props) {
-
+    const click = () => {
+      Alert.alert("okok")
+        console.log("okok1")
+    }
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>{props.name}</Text>
-            <Image style={styles.categoryImg} source={farm}/>
-        </View>
+        <TouchableOpacity onPress={() =>{
+            click()
+        }}>
+            <View style={styles.container}>
+                <Text style={styles.title}>{props.name}</Text>
+                <Image style={styles.categoryImg} source={farm}/>
+            </View>
+        </TouchableOpacity>
     );
 
 
