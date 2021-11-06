@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
     View,
     Text,
@@ -7,19 +7,17 @@ import {
 import farm from "../assets/farm.png"
 import {Image} from "react-native";
 import {TouchableOpacity} from "react-native";
+import {} from '@react-navigation/native'
+import Category_detail from "../screens/Category_detail";
+import {useNavigation} from '@react-navigation/native'
 
-export default function CategoryListItem(props) {
-    const click = () => {
-        Alert.alert("okok")
-        console.log("okok1")
+export default function CategoryListItem({name}) {
 
-    }
+    const navigation = useNavigation();
     return (
-        <TouchableOpacity onPress={() => {
-            click()
-        }}>
+        <TouchableOpacity onPress={() => navigation.navigate("detail")}>
             <View style={styles.container}>
-                <Text style={styles.title}>{props.name}</Text>
+                <Text style={styles.title}>{name}</Text>
                 <Image style={styles.categoryImg} source={farm}/>
             </View>
         </TouchableOpacity>

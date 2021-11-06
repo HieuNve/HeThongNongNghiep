@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
 import CategoryListItem from "./components/CategoryListItem";
 import Category from "./screens/Category";
+import Category_detail from "./screens/Category_detail";
 
 
 const Stack = createStackNavigator()
@@ -13,6 +14,7 @@ export default function App() {
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen name={"Home"} component={Category}/>
+                <Stack.Screen name={"detail"} component={Category_detail}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
