@@ -6,15 +6,16 @@ import {
 } from "react-native"
 import farm from "../assets/farm.png"
 import {Image} from "react-native";
-import {TouchableOpacity} from "react-native-web";
+import {TouchableOpacity} from "react-native";
 
 export default function CategoryListItem(props) {
     const click = () => {
-      Alert.alert("okok")
+        Alert.alert("okok")
         console.log("okok1")
+
     }
     return (
-        <TouchableOpacity onPress={() =>{
+        <TouchableOpacity onPress={() => {
             click()
         }}>
             <View style={styles.container}>
