@@ -6,7 +6,7 @@ thư viện
     "@react-navigation/stack": "^6.0.11",
     "expo": "~43.0.0",
     "expo-status-bar": "~1.1.0",
-    "react": "17.0.1",
+    "react": "17.0.1",\
     "react-dom": "17.0.1",
     "react-native": "0.64.2",
     "react-native-gesture-handler": "^1.10.3",
