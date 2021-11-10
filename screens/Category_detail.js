@@ -102,12 +102,12 @@ const styles = StyleSheet.create({
         marginBottom: 8,
         fontWeight: "bold",
         textAlign: "center",
-        paddingTop: 16,
+        paddingTop: 10,
         color: "green"
     },
     categoryImg: {
-        width: 64,
-        height: 64
+        width: 50,
+        height: 50
     },
     touchalbe: {
         paddingTop: 16,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
 
     },
     DeatailButton: {
-        paddingTop: 16,
+        paddingTop: 40,
     },
     titleButton: {
         textTransform: "uppercase",
