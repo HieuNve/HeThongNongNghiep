@@ -16,7 +16,9 @@ const list = [
 export default function Category() {
     const categories = list
     return (
-        <View>
+        <View style={{
+            height: "98%"
+        }}>
             <ScrollView style={{paddingTop: 16, paddingLeft: 16, paddingRight: 16}}>
                 {categories.map(value =>
                     <CategoryListItem key={value.id} name={value.name}/>)}

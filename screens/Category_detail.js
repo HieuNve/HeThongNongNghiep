@@ -12,10 +12,19 @@ export default function Category_detail() {
 
             <View style={styles.headerDeatail}>
                 <View style={{flex: 1}}>
-
                     <Text style={styles.title}>
-                        <Image source={frui} style={styles.imgFarm}/>
-                        Vườn cà chua</Text>
+                        Danh sách vườn
+                    </Text>
+                    <View
+                        style={{
+                            textAlign: 'center',
+                            marginLeft: 120
+                        }}>
+                        <Text style={styles.title}>
+                            <Image source={frui} style={styles.imgFarm}/>
+                            Vườn cà chua
+                        </Text>
+                    </View>
                 </View>
                 <View style={{flex: 1, flexDirection: "row"}}>
                     <View style={{flex: 1}}>
@@ -95,7 +104,9 @@ const styles = StyleSheet.create({
             width: 0,
             height: 0
         },
-        marginBottom: 16
+        marginBottom: 16,
+        height: 130,
+
     },
     title: {
         textTransform: "uppercase",
@@ -138,7 +149,7 @@ const styles = StyleSheet.create({
 
     },
     DeatailButton: {
-        paddingTop: 40,
+        paddingTop: 55,
     },
     titleButton: {
         textTransform: "uppercase",
