@@ -6,6 +6,8 @@ import CategoryListItem from "./components/CategoryListItem";
 import Category from "./screens/Category";
 import Category_detail from "./screens/Category_detail";
 import MyTabs from "./tabnavigation/Tab_Navigation"
+import Chao from "./screens/Chao";
+import Login from "./screens/Login/Login";
 
 
 const Stack = createStackNavigator()
@@ -14,6 +16,16 @@ export default function App() {
     return (
         <NavigationContainer>
             <Stack.Navigator>
+                <Stack.Screen name={"chao"} component={Chao}
+                              options={{
+                                  headerShown: false
+                              }}
+                />
+                <Stack.Screen name={"login"} component={Login}
+                              options={{
+                                  headerShown: false
+                              }}
+                />
                 <Stack.Screen name={"tab"} component={MyTabs}
                               options={{
                                   headerShown: false,

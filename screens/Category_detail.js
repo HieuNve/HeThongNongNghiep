@@ -6,7 +6,10 @@ import cloud from "../assets/cloudy.png"
 import {useNavigation} from "@react-navigation/native";
 
 export default function Category_detail() {
-    // const navigation = useNavigation();
+    const navigation = useNavigation();
+    const BackToList = () => {
+        navigation.navigate("home")
+    }
     return (
         <View style={styles.detailScreen}>
 
@@ -35,7 +38,7 @@ export default function Category_detail() {
                     </View>
                 </View>
             </View>
-            <View style={{flex: 2}}>
+            <View style={{flex: 3}}>
                 <View style={{flex: 1, flexDirection: "row"}}>
                     <View style={{flex: 1}}>
                         <TouchableOpacity onPress={() => {
@@ -63,7 +66,7 @@ export default function Category_detail() {
                     </View>
                 </View>
                 <View style={{
-                    flex: 1,
+                    flex: 2,
                     flexDirection: "row"
                 }}>
                     <View style={{flex: 1}}>
@@ -80,6 +83,17 @@ export default function Category_detail() {
                             </View>
                         </TouchableOpacity>
                     </View>
+                </View>
+                <View style={{flex: 1}}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            BackToList()
+                        }}
+                    >
+                        <View style={styles.DanhSach}>
+                            <Text style={styles.titleButton}>Danh sách vườn</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
             <View style={{flex: 3}}>
@@ -149,12 +163,23 @@ const styles = StyleSheet.create({
 
     },
     DeatailButton: {
-        paddingTop: 55,
+        paddingTop: 80,
     },
     titleButton: {
         textTransform: "uppercase",
         fontWeight: "bold",
         textAlign: "center",
         color: "white"
+    },
+    DanhSach: {
+        alignItems: "center",
+        padding: 16,
+        backgroundColor: "blue",
+        shadowColor: "#000",
+        shadowOpacity: 0.3,
+        shadowRadius: 10,
+        width: "95%",
+        marginLeft: 16,
+        borderRadius: 7,
     }
 });
