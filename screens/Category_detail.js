@@ -38,7 +38,7 @@ export default function Category_detail() {
                     </View>
                 </View>
             </View>
-            <View style={{flex: 3}}>
+            <View style={{flex: 4}}>
                 <View style={{flex: 1, flexDirection: "row"}}>
                     <View style={{flex: 1}}>
                         <TouchableOpacity onPress={() => {
@@ -66,7 +66,7 @@ export default function Category_detail() {
                     </View>
                 </View>
                 <View style={{
-                    flex: 2,
+                    flex: 3,
                     flexDirection: "row"
                 }}>
                     <View style={{flex: 1}}>
