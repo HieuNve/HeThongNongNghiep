@@ -7,7 +7,7 @@ import Category from "./screens/Category";
 import Category_detail from "./screens/Category_detail";
 import MyTabs from "./tabnavigation/Tab_Navigation"
 import Chao from "./screens/Chao";
-import Login from "./screens/Login/Login";
+import Login from "./screens/Login";
 
 
 const Stack = createStackNavigator()

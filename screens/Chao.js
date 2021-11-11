@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
 import {View} from "react-native";
-import {ImageBackground} from "react-native-web";
+import {ImageBackground} from "react-native";
 import imgBackGround from "../assets/backgroud.jpg"
 
 export default function Chao({navigation}) {

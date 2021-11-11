@@ -3,6 +3,8 @@ import React from 'react';
 import {Button, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 import {MaterialIcons} from '@expo/vector-icons';
+import {Image} from "react-native";
+import logo from "../assets/logo.png"
 
 
 export default function Login({navigation}) {
@@ -13,9 +15,9 @@ export default function Login({navigation}) {
 
         <View style={styles.container}>
 
-            <View style={{flex: 1}}>
-                <View>
-                    <Text style={styles.textHi}>WELCOME</Text>
+            <View style={{flex: 2}}>
+                <View style={styles.welcome}>
+                    <Image style={styles.imgLogo} source={logo}/>
                 </View>
             </View>
             <View style={{flex: 4}}>
@@ -142,6 +144,16 @@ const styles = StyleSheet.create({
     actionbuttonText: {
         color: '#e7963d'
     },
+    welcome: {
+        textAlign: "center",
+        alignItems: "center",
+        paddingTop: 20
+    },
+    imgLogo: {
+        width: 200,
+        height: 200,
+        textAlign: "center"
+    }
 
 
 });
