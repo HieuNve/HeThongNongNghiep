@@ -11,25 +11,15 @@ export default function Login({navigation}) {
     }
     return (
 
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
 
-            <View>
+            <View style={{flex: 1}}>
                 <View>
                     <Text style={styles.textHi}>WELCOME</Text>
                 </View>
             </View>
-            <View>
-                <View style={styles.from1}>
-                    {/*<MaterialCommunityIcons name="email-check-outline" size={24} color="#ffffff"*/}
-                    {/*                        style={{*/}
-                    {/*                            position: 'absolute',*/}
-                    {/*                            top: 20,*/}
-                    {/*                            left: 10,*/}
-                    {/*                            zIndex: 10,*/}
-                    {/*                            marginLeft: 25,*/}
-                    {/*                            fontWeight: "bold"*/}
-                    {/*                        }}/>*/}
-
+            <View style={{flex: 4}}>
+                <View style={{flex: 2}}>
                     <TextInput style={styles.from2}
                                keyboardType='email-address'
                                autoFocus={true}
@@ -38,15 +28,6 @@ export default function Login({navigation}) {
                                textAlign='center'
 
                     />
-                    {/*<MaterialIcons name="lock-outline" size={24} color="#ffffff"*/}
-                    {/*               style={{*/}
-                    {/*                   position: 'absolute',*/}
-                    {/*                   top: 110,*/}
-                    {/*                   left: 10,*/}
-                    {/*                   zIndex: 10,*/}
-                    {/*                   marginLeft: 25,*/}
-                    {/*                   fontWeight: "bold"*/}
-                    {/*               }}/>*/}
 
                     <TextInput style={styles.from3}
                                keyboardType='numeric'
@@ -56,28 +37,29 @@ export default function Login({navigation}) {
                                textAlign='center'>
 
                     </TextInput>
-                    <View>
-                        <TouchableOpacity style={styles.button}
-                                          onPress={() => {
-                                              loginButton()
-                                          }}
-                        >
-                            <Text style={styles.buttonText}>Sign In</Text>
-                        </TouchableOpacity>
+                    <View style={styles.from1}>
+                        <View>
+                            <TouchableOpacity style={styles.button}
+                                              onPress={() => {
+                                                  loginButton()
+                                              }}
+                            >
+                                <Text style={styles.buttonText}>Sign In</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.action}>
+                            <Text>Don't have an account?
+                                <TouchableOpacity>
+                                    <Text style={styles.actionbuttonText}>Sign Up</Text>
+                                </TouchableOpacity>
+                            </Text>
+                        </View>
                     </View>
-
                 </View>
-            </View>
-
-
-            <View style={styles.action}>
-                <Text>Don't have an account? <TouchableOpacity>
-                    <Text style={styles.actionbuttonText}>Sign Up</Text>
-                </TouchableOpacity> </Text>
-
 
             </View>
-        </SafeAreaView>
+
+        </View>
     );
 }
 
@@ -89,7 +71,8 @@ const styles = StyleSheet.create({
 
     },
     from1: {
-        textAlign: "center"
+        textAlign: "center",
+        flex: 1
     },
     textHi: {
         fontSize: 23,
