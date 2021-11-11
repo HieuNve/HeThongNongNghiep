@@ -25,7 +25,7 @@ export default function Login({navigation}) {
                     <TextInput style={styles.from2}
                                keyboardType='email-address'
                                autoFocus={true}
-                               placeholder='            E-mail adress'
+                               placeholder='  E-mail adress'
                                placeholderTextColor='#ffffff'
                                textAlign='center'
 
@@ -34,7 +34,7 @@ export default function Login({navigation}) {
                     <TextInput style={styles.from3}
                                keyboardType='numeric'
                                secureTextEntry={true}
-                               placeholder='            E-mail adress'
+                               placeholder='  E-mail adress'
                                placeholderTextColor='#ffffff'
                                textAlign='center'>
 
@@ -50,9 +50,9 @@ export default function Login({navigation}) {
                             </TouchableOpacity>
                         </View>
                         <View style={styles.action}>
-                            <Text>Don't have an account?
+                            <Text style={styles.donthave}>Don't have an account ?
                                 <TouchableOpacity>
-                                    <Text style={styles.actionbuttonText}>Sign Up</Text>
+                                    <Text style={styles.actionbuttonText}> Sign Up</Text>
                                 </TouchableOpacity>
                             </Text>
                         </View>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     container: {
 
         flex: 1,
-        backgroundColor: "#70b349"
+        backgroundColor: "#67ad3d"
 
     },
     from1: {
@@ -117,9 +117,8 @@ const styles = StyleSheet.create({
         },
     },
     action: {
-        margin: 100,
+        margin: 60,
         textAlign: 'center'
-
     },
     button: {
         marginTop: 15,
@@ -139,10 +138,14 @@ const styles = StyleSheet.create({
         },
     },
     buttonText: {
-        color: '#ffffff'
+        color: '#ffffff',
+        fontSize: 18,
+        fontWeight: "bold"
     },
     actionbuttonText: {
-        color: '#e7963d'
+        color: '#ffffff',
+        fontSize: 16,
+        fontWeight: "bold"
     },
     welcome: {
         textAlign: "center",
@@ -152,7 +155,19 @@ const styles = StyleSheet.create({
     imgLogo: {
         width: 200,
         height: 200,
-        textAlign: "center"
+        textAlign: "center",
+        shadowColor: "#000",
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
+        shadowOffset: {
+            width: 0,
+            height: 0
+        },
+    },
+    donthave: {
+        color: "#ffffff",
+        fontWeight: "bold",
+        fontSize: 16
     }
 
 
