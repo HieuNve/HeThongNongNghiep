@@ -1,11 +1,17 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Alert, Button, StyleSheet, TouchableOpacity} from "react-native";
 import {View} from "react-native";
 import {Text} from "react-native";
 import {Image} from "react-native";
 import logo from "../assets/logo.png"
+import axios from "axios";
+import sun from "../assets/sun.png"
+import hum from "../assets/humidity.png"
+import temp from "../assets/temperature.png"
+import Ph from "../assets/ph.png"
 
 export default function MoiTruong({navigation}) {
+    const [data, setData] = useState("")
     const BackToList = () => {
         navigation.navigate("detail")
     }
@@ -13,21 +19,53 @@ export default function MoiTruong({navigation}) {
         console.log("dieu khien")
         Alert.alert("Điều khiển")
     }
+    useEffect(() => {
+        fetch(
+            "http://159.223.56.85/api/getAllsensors"
+        )
+            .then((response) => response.json())
+            .then((result) => setData(result.data))
+            .catch((error) => console.log("error", error));
+    }, []);
+    console.log(data["soidHumidity"])
+    // var  urls ="api.openweathermap.org/data/2.5/weather?lat=21.0169933&lon=105.8763607&appid=12c4e7125866191e240c933ca614191d"
+    // useEffect(() => {
+    //     fetch(
+    //         "http://api.openweathermap.org/data/2.5/weather?lat=21.0169933&lon=105.8763607&appid=12c4e7125866191e240c933ca614191d"
+    //     )
+    //         .then((response) => response.json())
+    //         .then((result) => console.log(result))
+    //         .catch((error) => console.log("error", error));
+    // });
+    // const [valueSensor, setValueSensor] = React.useState("");
+    // const requstSS = async () => {
+    //     const result = await axios.get("http://159.223.56.85/api/getAllsensors")
+    //     return result;
+    // }
+    //
+    // requstSS().then((res) => {
+    //     setValueSensor(res.data);
+    // }).catch(error => {
+    //     console.log(error)
+    // });
+    // console.log(valueSensor)
+
+
     return (
         <View style={styles.container}>
             <View style={{flex: 1, alignItems: "center"}}>
                 <Image style={styles.imgLogo} source={logo}/>
             </View>
-            <View style={{flex: 2, alignItems: "center"}}>
+            <View style={{flex: 4, alignItems: "center"}}>
                 <View style={styles.boxtemp}>
                     <View style={{flex: 1}}>
-                        <Text style={styles.textStyle}>A</Text>
+                        <Image source={temp} style={styles.imgTemp}/>
                     </View>
                     <View style={{flex: 2}}>
                         <Text style={styles.textStyle}>Nhiệt độ môi trường</Text>
                     </View>
                     <View style={{flex: 1}}>
-                        <Text style={styles.textStyle}>25</Text>
+                        <Text style={styles.textStyle}>{data["temperature"]}</Text>
                     </View>
                     <View style={{flex: 1}}>
                         <Text style={styles.textStyle}>C</Text>
@@ -35,58 +73,58 @@ export default function MoiTruong({navigation}) {
                 </View>
                 <View style={styles.boxtemp}>
                     <View style={{flex: 1}}>
-                        <Text style={styles.textStyle}>A</Text>
+                        <Image source={hum} style={styles.imgTemp}/>
                     </View>
                     <View style={{flex: 2}}>
-                        <Text style={styles.textStyle}>Nhiệt độ môi trường</Text>
+                        <Text style={styles.textStyle}>Độ ẩm không khí</Text>
                     </View>
                     <View style={{flex: 1}}>
-                        <Text style={styles.textStyle}>25</Text>
+                        <Text style={styles.textStyle}>{data["humidity"]}</Text>
                     </View>
                     <View style={{flex: 1}}>
-                        <Text style={styles.textStyle}>C</Text>
+                        <Text style={styles.textStyle}>%</Text>
                     </View>
                 </View>
                 <View style={styles.boxtemp}>
                     <View style={{flex: 1}}>
-                        <Text style={styles.textStyle}>A</Text>
+                        <Image source={hum} style={styles.imgTemp}/>
                     </View>
                     <View style={{flex: 2}}>
-                        <Text style={styles.textStyle}>Nhiệt độ môi trường</Text>
+                        <Text style={styles.textStyle}>Độ ẩm đất</Text>
                     </View>
                     <View style={{flex: 1}}>
-                        <Text style={styles.textStyle}>25</Text>
+                        <Text style={styles.textStyle}>{data["soidHumidity"]}</Text>
                     </View>
                     <View style={{flex: 1}}>
-                        <Text style={styles.textStyle}>C</Text>
+                        <Text style={styles.textStyle}>%</Text>
                     </View>
                 </View>
                 <View style={styles.boxtemp}>
                     <View style={{flex: 1}}>
-                        <Text style={styles.textStyle}>A</Text>
+                        <Image source={Ph} style={styles.imgTemp}/>
                     </View>
                     <View style={{flex: 2}}>
-                        <Text style={styles.textStyle}>Nhiệt độ môi trường</Text>
+                        <Text style={styles.textStyle}>Độ PH đất</Text>
                     </View>
                     <View style={{flex: 1}}>
-                        <Text style={styles.textStyle}>25</Text>
+                        <Text style={styles.textStyle}>{data["soilPH"]}</Text>
                     </View>
                     <View style={{flex: 1}}>
-                        <Text style={styles.textStyle}>C</Text>
+                        <Text style={styles.textStyle}>%</Text>
                     </View>
                 </View>
                 <View style={styles.boxtemp}>
                     <View style={{flex: 1}}>
-                        <Text style={styles.textStyle}>A</Text>
+                        <Image source={sun} style={styles.imgTemp}/>
                     </View>
                     <View style={{flex: 2}}>
-                        <Text style={styles.textStyle}>Nhiệt độ môi trường</Text>
+                        <Text style={styles.textStyle}>Cường độ ánh sáng</Text>
                     </View>
                     <View style={{flex: 1}}>
-                        <Text style={styles.textStyle}>25</Text>
+                        <Text style={styles.textStyle}>{data["lightIntensity"]}</Text>
                     </View>
                     <View style={{flex: 1}}>
-                        <Text style={styles.textStyle}>C</Text>
+                        <Text style={styles.textStyle}>Lux</Text>
                     </View>
                 </View>
 
@@ -131,7 +169,7 @@ const styles = StyleSheet.create({
     textStyle: {
         textAlign: "center",
         fontWeight: "bold",
-        fontSize: 16,
+        fontSize: 14,
         justifyContent: "center",
         paddingTop: 10
     },
@@ -172,5 +210,14 @@ const styles = StyleSheet.create({
     imgLogo: {
         width: 150,
         height: 150
+    },
+    imgTemp: {
+        width: 40,
+        height: 40,
+        textAlign: "center",
+        fontWeight: "bold",
+        fontSize: 14,
+        justifyContent: "center",
+        paddingTop: 10
     }
 });
