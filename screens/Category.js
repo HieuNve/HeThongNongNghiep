@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView, FlatList} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, FlatList, Button} from 'react-native';
 import CategoryListItem from "../components/CategoryListItem";
 
 
@@ -19,6 +19,7 @@ export default function Category() {
         <View style={{
             height: "98%"
         }}>
+            <Button title={"Thêm vườn"}/>
             <ScrollView style={{paddingTop: 16, paddingLeft: 16, paddingRight: 16}}>
                 {categories.map(value =>
                     <CategoryListItem key={value.id} name={value.name}/>)}

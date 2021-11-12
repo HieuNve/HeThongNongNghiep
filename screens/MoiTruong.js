@@ -162,7 +162,7 @@ export default function MoiTruong({navigation}) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#89c263',
         alignItems: 'stretch',
         justifyContent: 'center',
     },
@@ -208,8 +208,8 @@ const styles = StyleSheet.create({
         color: "white"
     },
     imgLogo: {
-        width: 150,
-        height: 150
+        width: 100,
+        height: 100
     },
     imgTemp: {
         width: 40,
