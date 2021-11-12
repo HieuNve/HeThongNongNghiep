@@ -18,7 +18,7 @@ export default function MoiTruong({navigation}) {
             <View style={{flex: 1, alignItems: "center"}}>
                 <Image style={styles.imgLogo} source={logo}/>
             </View>
-            <View style={{flex: 1, alignItems: "center"}}>
+            <View style={{flex: 2, alignItems: "center"}}>
                 <View style={styles.boxtemp}>
                     <View style={{flex: 1}}>
                         <Text style={styles.textStyle}>A</Text>
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
         paddingTop: 10
     },
     boxtemp: {
-        flex: 1,
+        flex: 2,
         flexDirection: "row",
         alignItems: "center",
         padding: 16,
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
         color: "white"
     },
     imgLogo: {
-        width: 300,
-        height: 300
+        width: 150,
+        height: 150
     }
 });
