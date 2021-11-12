@@ -28,15 +28,7 @@ export default function MoiTruong({navigation}) {
             .catch((error) => console.log("error", error));
     }, []);
     console.log(data["soidHumidity"])
-    // var  urls ="api.openweathermap.org/data/2.5/weather?lat=21.0169933&lon=105.8763607&appid=12c4e7125866191e240c933ca614191d"
-    // useEffect(() => {
-    //     fetch(
-    //         "http://api.openweathermap.org/data/2.5/weather?lat=21.0169933&lon=105.8763607&appid=12c4e7125866191e240c933ca614191d"
-    //     )
-    //         .then((response) => response.json())
-    //         .then((result) => console.log(result))
-    //         .catch((error) => console.log("error", error));
-    // });
+
     // const [valueSensor, setValueSensor] = React.useState("");
     // const requstSS = async () => {
     //     const result = await axios.get("http://159.223.56.85/api/getAllsensors")
