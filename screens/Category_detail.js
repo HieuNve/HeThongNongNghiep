@@ -10,14 +10,14 @@ export default function Category_detail() {
     const BackToList = () => {
         navigation.navigate("home")
     }
+    const ToNhatKy = () => {
+        navigation.navigate("Moitruong")
+    }
     return (
         <View style={styles.detailScreen}>
 
             <View style={styles.headerDeatail}>
                 <View style={{flex: 1}}>
-                    <Text style={styles.title}>
-                        Danh sách vườn
-                    </Text>
                     <View
                         style={{
                             textAlign: 'center',
@@ -54,7 +54,7 @@ export default function Category_detail() {
                     </View>
                     <View style={{flex: 1}}>
                         <TouchableOpacity onPress={() => {
-                            Alert.alert("okok")
+                            ToNhatKy()
                         }}
                                           style={styles.touchalbe}
                         >

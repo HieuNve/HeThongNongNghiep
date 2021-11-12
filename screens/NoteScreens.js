@@ -4,6 +4,7 @@ import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
 import Category from "./Category";
 import Category_detail from "./Category_detail";
+import MoiTruong from "./MoiTruong";
 
 const Stack = createStackNavigator();
 const NoteScreens = () => {
@@ -16,6 +17,11 @@ const NoteScreens = () => {
                               }}
                 />
                 <Stack.Screen name={"detail"} component={Category_detail}
+                              options={{
+                                  headerShown: false
+                              }}
+                />
+                <Stack.Screen name={"Moitruong"} component={MoiTruong}
                               options={{
                                   headerShown: false
                               }}
