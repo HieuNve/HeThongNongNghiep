@@ -5,6 +5,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import Category from "./Category";
 import Category_detail from "./Category_detail";
 import MoiTruong from "./MoiTruong";
+import Them_Vuon from "./Them_Vuon";
 
 const Stack = createStackNavigator();
 const NoteScreens = () => {
@@ -22,6 +23,11 @@ const NoteScreens = () => {
                               }}
                 />
                 <Stack.Screen name={"Moitruong"} component={MoiTruong}
+                              options={{
+                                  headerShown: false
+                              }}
+                />
+                <Stack.Screen name={"ThemVuon"} component={Them_Vuon}
                               options={{
                                   headerShown: false
                               }}

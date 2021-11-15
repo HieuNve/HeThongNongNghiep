@@ -1,6 +1,6 @@
 import {StatusBar} from 'expo-status-bar';
-import React from 'react';
-import {Button, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
+import {Alert, Button, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 import {MaterialIcons} from '@expo/vector-icons';
 import {Image} from "react-native";
@@ -8,13 +8,26 @@ import logo from "../assets/logo.png"
 
 
 export default function Login({navigation}) {
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
     const loginButton = () => {
-        navigation.navigate("tab")
+
+        console.log({username})
+        console.log({password})
+        if (username === "admin" && password === "123") {
+            navigation.navigate("tab")
+        } else {
+            Alert.alert("Thông tin tài khoản mật khẩu không chính xác")
+            console.log("Sai tk , MK")
+            setUsername("")
+            setPassword("")
+        }
     }
 
     function ToSignUp() {
         navigation.navigate("signUp")
     }
+
 
     return (
 
@@ -33,15 +46,24 @@ export default function Login({navigation}) {
                                placeholder='  E-mail adress'
                                placeholderTextColor='#ffffff'
                                textAlign='center'
+                               value={username}
+                               onChangeText={(username) => {
+                                   setUsername(username)
+                               }}
 
                     />
 
                     <TextInput style={styles.from3}
                                keyboardType='numeric'
                                secureTextEntry={true}
-                               placeholder='  E-mail adress'
+                               placeholder='  Mật khẩu'
                                placeholderTextColor='#ffffff'
-                               textAlign='center'>
+                               textAlign='center'
+                               value={password}
+                               onChangeText={(password) => {
+                                   setPassword(password)
+                               }}
+                    >
 
                     </TextInput>
                     <View style={styles.from1}>
@@ -57,9 +79,9 @@ export default function Login({navigation}) {
                         <View style={styles.action}>
                             <Text style={styles.donthave}>Don't have an account ?
                                 <TouchableOpacity
-                                onPress={()=>{
-                                    ToSignUp()
-                                }}
+                                    onPress={() => {
+                                        ToSignUp()
+                                    }}
                                 >
                                     <Text style={styles.actionbuttonText}> Sign Up</Text>
                                 </TouchableOpacity>

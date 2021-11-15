@@ -13,13 +13,23 @@ const list = [
     {id: 7, name: "Vườn 3"},
     {id: 8, name: "Vườn 4"},
 ]
-export default function Category() {
+
+
+export default function Category({navigation}) {
+    function ToAddFarm() {
+        navigation.navigate("ThemVuon")
+    }
+
     const categories = list
     return (
         <View style={{
             height: "98%"
         }}>
-            <Button title={"Thêm vườn"}/>
+            <Button title={"Thêm vườn"}
+                    onPress={() => {
+                        ToAddFarm()
+                    }}
+            />
             <ScrollView style={{paddingTop: 16, paddingLeft: 16, paddingRight: 16}}>
                 {categories.map(value =>
                     <CategoryListItem key={value.id} name={value.name}/>)}
