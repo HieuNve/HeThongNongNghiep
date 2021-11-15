@@ -7,15 +7,10 @@ import {Image} from "react-native";
 import logo from "../assets/logo.png"
 
 
-export default function Login({navigation}) {
-    const loginButton = () => {
-        navigation.navigate("tab")
+export default function SignUp({navigation}) {
+    const loginSignup = () => {
+        navigation.navigate("login")
     }
-
-    function ToSignUp() {
-        navigation.navigate("signUp")
-    }
-
     return (
 
         <View style={styles.container}>
@@ -28,7 +23,7 @@ export default function Login({navigation}) {
             <View style={{flex: 4}}>
                 <View style={{flex: 2}}>
                     <TextInput style={styles.from2}
-                               keyboardType='email-address'
+                               keyboardType='Số điện thoại'
                                autoFocus={true}
                                placeholder='  E-mail adress'
                                placeholderTextColor='#ffffff'
@@ -39,7 +34,23 @@ export default function Login({navigation}) {
                     <TextInput style={styles.from3}
                                keyboardType='numeric'
                                secureTextEntry={true}
-                               placeholder='  E-mail adress'
+                               placeholder='  Tên'
+                               placeholderTextColor='#ffffff'
+                               textAlign='center'>
+
+                    </TextInput>
+                    <TextInput style={styles.from3}
+                               keyboardType='numeric'
+                               secureTextEntry={true}
+                               placeholder=' Mật khẩu'
+                               placeholderTextColor='#ffffff'
+                               textAlign='center'>
+
+                    </TextInput>
+                    <TextInput style={styles.from3}
+                               keyboardType='numeric'
+                               secureTextEntry={true}
+                               placeholder='  Nhập lại mật khẩu'
                                placeholderTextColor='#ffffff'
                                textAlign='center'>
 
@@ -48,23 +59,19 @@ export default function Login({navigation}) {
                         <View>
                             <TouchableOpacity style={styles.button}
                                               onPress={() => {
-                                                  loginButton()
+                                                  loginSignup()
                                               }}
                             >
-                                <Text style={styles.buttonText}>Sign In</Text>
+                                <Text style={styles.buttonText}>Đăng ký</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.action}>
-                            <Text style={styles.donthave}>Don't have an account ?
-                                <TouchableOpacity
-                                onPress={()=>{
-                                    ToSignUp()
-                                }}
-                                >
-                                    <Text style={styles.actionbuttonText}> Sign Up</Text>
-                                </TouchableOpacity>
-                            </Text>
-                        </View>
+                        {/*<View style={styles.action}>*/}
+                        {/*    <Text style={styles.donthave}>Don't have an account ?*/}
+                        {/*        <TouchableOpacity>*/}
+                        {/*            <Text style={styles.actionbuttonText}> Sign Up</Text>*/}
+                        {/*        </TouchableOpacity>*/}
+                        {/*    </Text>*/}
+                        {/*</View>*/}
                     </View>
                 </View>
 

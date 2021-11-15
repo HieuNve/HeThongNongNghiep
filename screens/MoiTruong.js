@@ -122,7 +122,7 @@ export default function MoiTruong({navigation}) {
 
             </View>
             <View style={{flex: 1, flexDirection: "row", alignItems: "center"}}>
-                <View style={{flex: 1}}>
+                <View style={{flex: 1, alignItems: 'center'}}>
                     <TouchableOpacity
                         onPress={() => {
                             BackToList()
@@ -133,7 +133,7 @@ export default function MoiTruong({navigation}) {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{flex: 1}}>
+                <View style={{flex: 1, alignItems: 'center'}}>
                     <TouchableOpacity
                         onPress={() => {
                             DieuKhien()
@@ -185,13 +185,13 @@ const styles = StyleSheet.create({
     DanhSach: {
         alignItems: "center",
         padding: 16,
-        backgroundColor: "blue",
+        backgroundColor: "#e7963d",
         shadowColor: "#000",
         shadowOpacity: 0.3,
         shadowRadius: 10,
         width: "95%",
         marginLeft: 16,
-        borderRadius: 7,
+        borderRadius: 10,
     },
     titleButton: {
         textTransform: "uppercase",
