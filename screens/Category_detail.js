@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     buttonDetail: {
         alignItems: "center",
         padding: 16,
-        backgroundColor: "blue",
+        backgroundColor: "#e7963d",
         shadowColor: "#000",
         shadowOpacity: 0.3,
         shadowRadius: 10,
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     DanhSach: {
         alignItems: "center",
         padding: 16,
-        backgroundColor: "blue",
+        backgroundColor: "#e7963d",
         shadowColor: "#000",
         shadowOpacity: 0.3,
         shadowRadius: 10,

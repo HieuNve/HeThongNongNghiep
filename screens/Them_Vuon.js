@@ -73,31 +73,33 @@ export default function Them_Vuon({navigation}) {
                                    textAlign='center'>
 
                         </TextInput>
-                        <View style={styles.from1}>
-                            <View style={{
-                                flex: 1,
-                                paddingRight: 25,
-                                alignItems: "center"
-                            }}>
-                                <TouchableOpacity style={styles.button}
-                                                  onPress={() => {
-                                                      AddFarm()
-                                                  }}
+                        <View style={{
+                            flex: 1,
+                            flexDirection: "row",
+                            alignItems: "center",
+                            paddingTop: 16,
+                            paddingBottom: 20
+                        }}>
+                            <View style={{flex: 1, alignItems: 'center'}}>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        CacelAddFarm()
+                                    }}
                                 >
-                                    <Text style={styles.buttonText}>Thêm vườn</Text>
+                                    <View style={styles.DanhSach}>
+                                        <Text style={styles.titleButton}>Hủy</Text>
+                                    </View>
                                 </TouchableOpacity>
                             </View>
-                            <View style={{
-                                flex: 1,
-                                paddingRight: 25,
-                                alignItems: "center"
-                            }}>
-                                <TouchableOpacity style={styles.button}
-                                                  onPress={() => {
-                                                      CacelAddFarm()
-                                                  }}
+                            <View style={{flex: 1, alignItems: 'center'}}>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        AddFarm()
+                                    }}
                                 >
-                                    <Text style={styles.buttonText}>Hủy</Text>
+                                    <View style={styles.DanhSach}>
+                                        <Text style={styles.titleButton}>Thêm Vườn</Text>
+                                    </View>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -219,7 +221,24 @@ const styles = StyleSheet.create({
         color: "#ffffff",
         fontWeight: "bold",
         fontSize: 16
-    }
+    },
+    DanhSach: {
+        alignItems: "center",
+        padding: 16,
+        backgroundColor: "#e7963d",
+        shadowColor: "#000",
+        shadowOpacity: 0.3,
+        shadowRadius: 10,
+        width: 150,
+        marginLeft: 16,
+        borderRadius: 10,
+    },
+    titleButton: {
+        textTransform: "uppercase",
+        fontWeight: "bold",
+        textAlign: "center",
+        color: "white"
+    },
 
 
 });

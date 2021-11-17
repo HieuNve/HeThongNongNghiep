@@ -7,7 +7,19 @@ export default function ThoiTiet() {
     const [dataW, setDataW] = useState("")
     const [dataWeather, setDataWeather] = useState("")
     const [dataWin, setDataWin] = React.useState("");
+    const [location, setLocation] = useState(null);
+    const [errorMsg, setErrorMsg] = useState(null);
     useEffect(() => {
+        (async () => {
+            let {status} = await Location.requestForegroundPermissionsAsync();
+            if (status !== 'granted') {
+                setErrorMsg('Permission to access location was denied');
+                return;
+            }
+
+            let location = await Location.getCurrentPositionAsync({});
+            setLocation(location);
+        })();
         fetch(
             "http://api.openweathermap.org/data/2.5/weather?lat=21.0169933&lon=105.8763607&appid=12c4e7125866191e240c933ca614191d"
         )
@@ -19,6 +31,13 @@ export default function ThoiTiet() {
             })
             .catch((error) => console.log("error", error));
     }, []);
+    let text = 'Waiting..';
+    if (errorMsg) {
+        text = errorMsg;
+    } else if (location) {
+        text = JSON.stringify(location);
+    }
+    console.log(text)
     console.log(dataW["temp"])
     console.log(dataWeather)
     console.log(dataWeather["description"])
