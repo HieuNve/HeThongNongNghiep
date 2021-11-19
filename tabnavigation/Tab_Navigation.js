@@ -44,19 +44,6 @@ function Mytab() {
                             )
                         }}
             />
-            {/*<Tab.Screen name="thoiTiet" component={ThoiTiet}*/}
-            {/*            options={{*/}
-            {/*                title: "Thời tiết",*/}
-            {/*                tabBarIcon: () => (*/}
-            {/*                    <Image source={cloud}*/}
-            {/*                           style={{*/}
-            {/*                               width: 20,*/}
-            {/*                               height: 20*/}
-            {/*                           }}*/}
-            {/*                    />*/}
-            {/*                )*/}
-            {/*            }}*/}
-            {/*/>*/}
             <Tab.Screen name="taiKhoan" component={User_Info}
                         options={{
                             title: "Tài khoản",

@@ -38,8 +38,10 @@ export default function Category_detail() {
                     </View>
                 </View>
             </View>
+
+
             <View style={{flex: 4}}>
-                <View style={{flex: 1, flexDirection: "row"}}>
+                <View style={{flex: 2, flexDirection: "row"}}>
                     <View style={{flex: 1}}>
                         <TouchableOpacity onPress={() => {
                             Alert.alert("okok")
@@ -65,8 +67,10 @@ export default function Category_detail() {
                         </TouchableOpacity>
                     </View>
                 </View>
+
+
                 <View style={{
-                    flex: 3,
+                    flex: 2,
                     flexDirection: "row"
                 }}>
                     <View style={{flex: 1}}>
@@ -84,6 +88,8 @@ export default function Category_detail() {
                         </TouchableOpacity>
                     </View>
                 </View>
+
+
                 <View style={{flex: 1}}>
                     <TouchableOpacity
                         onPress={() => {
@@ -163,7 +169,7 @@ const styles = StyleSheet.create({
 
     },
     DeatailButton: {
-        paddingTop: 80,
+        paddingTop: 45,
     },
     titleButton: {
         textTransform: "uppercase",

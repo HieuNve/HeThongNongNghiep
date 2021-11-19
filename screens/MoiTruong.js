@@ -20,6 +20,7 @@ export default function MoiTruong({navigation}) {
         Alert.alert("Điều khiển")
     }
     useEffect(() => {
+
         fetch(
             "http://159.223.56.85/api/getAllsensors"
         )
@@ -27,21 +28,7 @@ export default function MoiTruong({navigation}) {
             .then((result) => setData(result.data))
             .catch((error) => console.log("error", error));
     }, []);
-    console.log(data["soidHumidity"])
-
-    // const [valueSensor, setValueSensor] = React.useState("");
-    // const requstSS = async () => {
-    //     const result = await axios.get("http://159.223.56.85/api/getAllsensors")
-    //     return result;
-    // }
-    //
-    // requstSS().then((res) => {
-    //     setValueSensor(res.data);
-    // }).catch(error => {
-    //     console.log(error)
-    // });
-    // console.log(valueSensor)
-
+    console.log(data)
 
     return (
         <View style={styles.container}>
