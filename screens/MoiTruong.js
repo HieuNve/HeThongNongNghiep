@@ -18,6 +18,7 @@ export default function MoiTruong({navigation}) {
     const DieuKhien = () => {
         console.log("dieu khien")
         Alert.alert("Điều khiển")
+
     }
     useEffect(() => {
 

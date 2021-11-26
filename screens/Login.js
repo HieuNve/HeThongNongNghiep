@@ -5,6 +5,7 @@ import {MaterialCommunityIcons} from '@expo/vector-icons';
 import {MaterialIcons} from '@expo/vector-icons';
 import {Image} from "react-native";
 import logo from "../assets/logo.png"
+import axios from "axios";
 
 
 export default function Login({navigation}) {
@@ -14,14 +15,48 @@ export default function Login({navigation}) {
 
         console.log({username})
         console.log({password})
-        if (username === "admin" && password === "123") {
-            navigation.navigate("tab")
+        if (username.length === 0 && password.length === 0) {
+            Alert.alert("Bạn chưa nhập tải khoản, mật khẩu")
+
         } else {
-            Alert.alert("Thông tin tài khoản mật khẩu không chính xác")
-            console.log("Sai tk , MK")
-            setUsername("")
-            setPassword("")
+            const request_login = async () => {
+                const result = await axios({
+                    method: 'post',
+                    url: "http://159.223.56.85/api/auth/login",
+                    headers: {},
+                    data: {
+                        username: username,
+                        password: password,
+                    }
+                })
+                console.log(result)
+                return result
+            }
+            request_login().then(res => {
+                console.log(res.data.success)
+                if (res.data.success === 1) {
+                    navigation.navigate("tab")
+                    console.log("đăng nhập thành công")
+                } else {
+                    Alert.alert("Thông tin tài khoản mật khẩu không chính xác")
+                    console.log("sai tk mk")
+                }
+            }).catch((error) => {
+                console.log(error)
+                if (error.response) {
+                    console.log("lỗi response")
+                    Alert.alert("error 500")
+                    console.log("500")
+                } else if (error.request) {
+                    Alert.alert("error 500")
+                    console.log("404")
+                } else if (error.message) {
+                    console.log("lỗi mess")
+                }
+            })
         }
+
+
     }
 
     function ToSignUp() {

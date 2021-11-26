@@ -6,6 +6,8 @@ import Category from "./Category";
 import Category_detail from "./Category_detail";
 import MoiTruong from "./MoiTruong";
 import Them_Vuon from "./Them_Vuon";
+import Controller from "./Controller"
+import * as Constants from "constants";
 
 const Stack = createStackNavigator();
 const NoteScreens = () => {
@@ -28,6 +30,11 @@ const NoteScreens = () => {
                               }}
                 />
                 <Stack.Screen name={"ThemVuon"} component={Them_Vuon}
+                              options={{
+                                  headerShown: false
+                              }}
+                />
+                <Stack.Screen name={"DieuKhien"} component={Controller}
                               options={{
                                   headerShown: false
                               }}

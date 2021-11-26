@@ -1,15 +1,63 @@
-import {StatusBar} from 'expo-status-bar';
-import React from 'react';
-import {Button, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
-import {MaterialCommunityIcons} from '@expo/vector-icons';
-import {MaterialIcons} from '@expo/vector-icons';
-import {Image} from "react-native";
+import React, {useState} from 'react';
+import {Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import axios from "axios";
 import logo from "../assets/logo.png"
 
 
 export default function SignUp({navigation}) {
+    const [username_value, setUsername_value] = useState("")
+    const [password_value, setPassword_value] = useState("")
+    const [passwordAgain_value, setPasswordAgain_value] = useState("")
+    const [phone_number_value, setPhone_number_value] = useState("")
     const loginSignup = () => {
-        navigation.navigate("login")
+        console.log({username_value})
+        console.log({password_value})
+        console.log({passwordAgain_value})
+        console.log({phone_number_value})
+
+        if (password_value === passwordAgain_value) {
+            const request_sign_up = async () => {
+                const result = await axios({
+                    method: 'post',
+                    url: "http://159.223.56.85/api/auth/register",
+                    headers: {},
+                    data: {
+                        username: username_value,
+                        password: password_value,
+                        phoneNumber: phone_number_value
+                    }
+                })
+                console.log(result)
+                return result
+            }
+            request_sign_up().then(res => {
+                console.log(res.data.success)
+                if (res.data.success === 1) {
+                    Alert.alert("Đăng ký thành công")
+                    console.log("đăng ký thành công")
+                    navigation.navigate("login")
+                } else {
+                    Alert.alert("Đăng ký tài khoản không thành công")
+                    console.log("đăng ký không thành công")
+                }
+            }).catch((error) => {
+                console.log(error)
+                if (error.response) {
+                    console.log("lỗi response")
+                    Alert.alert("error 500")
+                    console.log("500")
+                } else if (error.request) {
+                    Alert.alert("error 500")
+                    console.log("404")
+                } else if (error.message) {
+                    console.log("lỗi mess")
+                }
+            })
+        } else {
+            console.log("no")
+            Alert.alert("Nhập lại mật khẩu")
+        }
+
     }
     return (
 
@@ -23,36 +71,52 @@ export default function SignUp({navigation}) {
             <View style={{flex: 4}}>
                 <View style={{flex: 2}}>
                     <TextInput style={styles.from2}
-                               keyboardType='Số điện thoại'
                                autoFocus={true}
-                               placeholder='  E-mail adress'
+                               placeholder='  Số điện thoại'
                                placeholderTextColor='#ffffff'
                                textAlign='center'
+                               value={phone_number_value}
+                               onChangeText={(phone_number_value) => {
+                                   setPhone_number_value(phone_number_value)
+                               }}
 
                     />
 
                     <TextInput style={styles.from3}
-                               keyboardType='numeric'
-                               secureTextEntry={true}
                                placeholder='  Tên'
                                placeholderTextColor='#ffffff'
-                               textAlign='center'>
+                               textAlign='center'
+                               value={username_value}
+                               onChangeText={(username_value) => {
+                                   setUsername_value(username_value)
+                               }}
+
+                    >
 
                     </TextInput>
                     <TextInput style={styles.from3}
-                               keyboardType='numeric'
                                secureTextEntry={true}
                                placeholder=' Mật khẩu'
                                placeholderTextColor='#ffffff'
-                               textAlign='center'>
+                               textAlign='center'
+                               value={password_value}
+                               onChangeText={(password_value) => {
+                                   setPassword_value(password_value)
+                               }}
+                    >
 
                     </TextInput>
                     <TextInput style={styles.from3}
-                               keyboardType='numeric'
                                secureTextEntry={true}
                                placeholder='  Nhập lại mật khẩu'
                                placeholderTextColor='#ffffff'
-                               textAlign='center'>
+                               textAlign='center'
+                               value={passwordAgain_value}
+                               onChangeText={(passwordAgain_value) => {
+                                   setPasswordAgain_value(passwordAgain_value)
+                               }}
+
+                    >
 
                     </TextInput>
                     <View style={styles.from1}>
@@ -65,13 +129,6 @@ export default function SignUp({navigation}) {
                                 <Text style={styles.buttonText}>Đăng ký</Text>
                             </TouchableOpacity>
                         </View>
-                        {/*<View style={styles.action}>*/}
-                        {/*    <Text style={styles.donthave}>Don't have an account ?*/}
-                        {/*        <TouchableOpacity>*/}
-                        {/*            <Text style={styles.actionbuttonText}> Sign Up</Text>*/}
-                        {/*        </TouchableOpacity>*/}
-                        {/*    </Text>*/}
-                        {/*</View>*/}
                     </View>
                 </View>
 
