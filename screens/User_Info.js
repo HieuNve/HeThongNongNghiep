@@ -158,8 +158,8 @@ const styles = StyleSheet.create({
         color: "#000000",
     },
     imgedit: {
-        width: 25,
-        height: 25,
+        width: 22,
+        height: 22,
         marginRight: 10
     }
 });

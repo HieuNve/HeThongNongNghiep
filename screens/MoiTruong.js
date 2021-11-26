@@ -72,7 +72,7 @@ export default function MoiTruong({navigation}) {
                         <Text style={styles.textStyle}>Độ ẩm đất</Text>
                     </View>
                     <View style={{flex: 1}}>
-                        <Text style={styles.textStyle}>{data["soidHumidity"]}</Text>
+                        <Text style={styles.textStyle}>{data["soilHumidity"]}</Text>
                     </View>
                     <View style={{flex: 1}}>
                         <Text style={styles.textStyle}>%</Text>
