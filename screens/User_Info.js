@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from "react-native";
 import {Text} from "react-native";
 import {ImageBackground, StyleSheet, Image} from "react-native";
@@ -6,9 +6,28 @@ import {TouchableOpacity} from "react-native";
 import edit from "../assets/edit.png"
 import in4 from "../assets/information.png"
 import logout from "../assets/logout.png"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function User_Info() {
+    const [name, setName] = useState("")
+    const [phone, setPhone] = useState("")
+    const getData = async () => {
+        try {
+            const username = await AsyncStorage.getItem('username')
+            const phone = await AsyncStorage.getItem('phone')
+            if (username != null) {
+                setName(username)
+                setPhone(phone)
+            }
 
+        } catch (e) {
+            // error reading value
+        }
+    }
+    useEffect(() => {
+        getData()
+    }, [])
+    console.log(name)
     return (
         <View>
             <View style={styles.box}>
@@ -26,8 +45,8 @@ export default function User_Info() {
                         }}
                     />
                     <View style={styles.textContent}>
-                        <Text style={styles.name}>Nguyễn Văn Hiếu</Text>
-                        <Text style={styles.phoneNumber}>0379639951</Text>
+                        <Text style={styles.name}>{name}</Text>
+                        <Text style={styles.phoneNumber}>{phone}</Text>
                     </View>
                 </View>
             </View>
@@ -143,7 +162,7 @@ const styles = StyleSheet.create({
             width: 0,
             height: 0
         },
-        marginBottom:5,
+        marginBottom: 5,
         width: "98%",
         height: 50,
     },

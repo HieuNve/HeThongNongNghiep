@@ -6,12 +6,13 @@ import {MaterialIcons} from '@expo/vector-icons';
 import {Image} from "react-native";
 import logo from "../assets/logo.png"
 import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function Login({navigation}) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const loginButton = () => {
+    const loginButton = async () => {
 
         console.log({username})
         console.log({password})
@@ -35,6 +36,9 @@ export default function Login({navigation}) {
             request_login().then(res => {
                 console.log(res.data.success)
                 if (res.data.success === 1) {
+                    let phone = res.data.phoneNumber
+                    let uuid = res.data.uuid
+                    storeData(username, password, phone, uuid)
                     navigation.navigate("tab")
                     console.log("đăng nhập thành công")
                 } else {
@@ -54,9 +58,22 @@ export default function Login({navigation}) {
                     console.log("lỗi mess")
                 }
             })
+
+
         }
 
 
+    }
+    const storeData = async (value, pass, phone, id) => {
+
+        try {
+            await AsyncStorage.setItem('username', value)
+            await AsyncStorage.setItem('pass', pass)
+            await AsyncStorage.setItem('phone', phone)
+            await AsyncStorage.setItem('id', id)
+        } catch (e) {
+            // saving error
+        }
     }
 
     function ToSignUp() {
