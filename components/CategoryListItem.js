@@ -10,12 +10,29 @@ import {TouchableOpacity} from "react-native";
 import {} from '@react-navigation/native'
 import Category_detail from "../screens/Category_detail";
 import {useNavigation} from '@react-navigation/native'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function CategoryListItem({name}) {
+export default function CategoryListItem({name, timestart}) {
 
     const navigation = useNavigation();
+    const onClickFarm = async () => {
+        navigation.navigate("detail")
+        save_data_farm(name)
+    }
+    const save_data_farm = async (value) => {
+
+        try {
+            await AsyncStorage.setItem('nameFarm', value)
+            await AsyncStorage.setItem('timestart', timestart)
+        } catch (e) {
+            // saving error
+        }
+    }
+
     return (
-        <TouchableOpacity onPress={() => navigation.navigate("detail")}>
+        <TouchableOpacity onPress={() => {
+            onClickFarm()
+        }}>
             <View style={styles.container}>
                 <Text style={styles.title}>{name}</Text>
                 <Image style={styles.categoryImg} source={farm}/>

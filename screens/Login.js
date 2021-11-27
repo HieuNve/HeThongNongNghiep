@@ -106,7 +106,6 @@ export default function Login({navigation}) {
                     />
 
                     <TextInput style={styles.from3}
-                               keyboardType='numeric'
                                secureTextEntry={true}
                                placeholder='  Mật khẩu'
                                placeholderTextColor='#ffffff'

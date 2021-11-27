@@ -1,18 +1,37 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View, Alert, Button} from 'react-native';
 import farm from "../assets/diary.png";
 import frui from "../assets/fruit-tree.png"
 import cloud from "../assets/cloudy.png"
 import {useNavigation} from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Category_detail() {
+    const [nameFarm, setNameFarm] = useState("")
     const navigation = useNavigation();
+
     const BackToList = () => {
         navigation.navigate("home")
     }
     const ToNhatKy = () => {
         navigation.navigate("Moitruong")
     }
+
+    const getDataFarm = async () => {
+        try {
+            const farmName = await AsyncStorage.getItem('nameFarm')
+            if (farmName != null) {
+                setNameFarm(farmName)
+            }
+
+        } catch (e) {
+            // error reading value
+        }
+    }
+
+    useEffect(() => {
+        getDataFarm()
+    }, [])
     return (
         <View style={styles.detailScreen}>
 
@@ -21,11 +40,12 @@ export default function Category_detail() {
                     <View
                         style={{
                             textAlign: 'center',
-                            marginLeft: 120
+
+
                         }}>
                         <Text style={styles.title}>
                             <Image source={frui} style={styles.imgFarm}/>
-                            Vườn cà chua
+                            {nameFarm}
                         </Text>
                     </View>
                 </View>
@@ -151,6 +171,8 @@ const styles = StyleSheet.create({
     },
     headerDeatail: {
         flex: 1,
+        alignItems: "center",
+        justifyContent: "space-between"
     },
     imgFarm: {
         width: 25,

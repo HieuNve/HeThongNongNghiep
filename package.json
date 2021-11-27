@@ -27,10 +27,12 @@
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "~3.4.0",
     "react-native-web": "0.17.1",
-    "react-navigation": "^4.4.4"
+    "react-navigation": "^4.4.4",
+    "toggle-switch-react-native": "^3.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "react-native-switch": "^2.0.0"
   },
   "private": true
 }

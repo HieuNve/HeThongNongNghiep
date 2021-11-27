@@ -71,6 +71,7 @@ export default function SignUp({navigation}) {
             <View style={{flex: 4}}>
                 <View style={{flex: 2}}>
                     <TextInput style={styles.from2}
+                               keyboardType='numeric'
                                autoFocus={true}
                                placeholder='  Số điện thoại'
                                placeholderTextColor='#ffffff'
