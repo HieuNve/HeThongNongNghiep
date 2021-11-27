@@ -20,6 +20,7 @@ const list = [
 export default function Category({navigation}) {
     const [idUser, setIdUser] = useState("")
     const [listFarm, setListFarm] = useState([])
+    const [visibleFarm, setVisibleFarm] = useState(false)
 
     function ToAddFarm() {
         navigation.navigate("ThemVuon")
@@ -53,6 +54,7 @@ export default function Category({navigation}) {
             console.log(res.data.success)
             if (res.data.success === 1) {
                 setListFarm(res.data.data)
+                setVisibleFarm(true)
             } else {
 
             }
@@ -60,10 +62,10 @@ export default function Category({navigation}) {
             console.log(error)
             if (error.response) {
                 console.log("lỗi response")
-                Alert.alert("error 500")
-                console.log("500")
+
+
             } else if (error.request) {
-                Alert.alert("error 500")
+
                 console.log("404")
             } else if (error.message) {
                 console.log("lỗi mess")
@@ -85,10 +87,15 @@ export default function Category({navigation}) {
                         ToAddFarm()
                     }}
             />
-            <ScrollView style={{paddingTop: 16, paddingLeft: 16, paddingRight: 16}}>
-                {listFarm.map(value =>
-                    <CategoryListItem key={value.location} name={value.location} timestart={value.location}/>)}
-            </ScrollView>
+            {
+                visibleFarm ? (
+                    <ScrollView style={{paddingTop: 16, paddingLeft: 16, paddingRight: 16}}>
+                        {listFarm.map(value =>
+                            <CategoryListItem key={value.location} name={value.location} timestart={value.location}/>)}
+                    </ScrollView>
+                ) : null
+            }
+
 
         </View>
     );

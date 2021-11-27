@@ -232,11 +232,11 @@ const styles = StyleSheet.create({
     welcome: {
         textAlign: "center",
         alignItems: "center",
-        paddingTop: 20
+
     },
     imgLogo: {
-        width: 200,
-        height: 200,
+        width: 300,
+        height: 300,
         textAlign: "center",
         shadowColor: "#000",
         shadowOpacity: 0.5,

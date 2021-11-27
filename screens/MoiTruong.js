@@ -187,8 +187,14 @@ const styles = StyleSheet.create({
         color: "white"
     },
     imgLogo: {
-        width: 100,
-        height: 100
+        width: 120,
+        height: 120,
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        shadowOffset: {
+            width: 0,
+            height: 0
+        },
     },
     imgTemp: {
         width: 40,

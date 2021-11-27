@@ -3,6 +3,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View, Alert, Button} from 're
 import farm from "../assets/diary.png";
 import frui from "../assets/fruit-tree.png"
 import cloud from "../assets/cloudy.png"
+import nature from "../assets/nature.png"
 import {useNavigation} from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -33,6 +34,7 @@ export default function Category_detail() {
         getDataFarm()
     }, [])
     return (
+
         <View style={styles.detailScreen}>
 
             <View style={styles.headerDeatail}>
@@ -40,11 +42,10 @@ export default function Category_detail() {
                     <View
                         style={{
                             textAlign: 'center',
-
-
+                            justifyContent: 'space-between',
                         }}>
                         <Text style={styles.title}>
-                            <Image source={frui} style={styles.imgFarm}/>
+                            <Image source={nature} style={styles.imgFarm}/>
                             {nameFarm}
                         </Text>
                     </View>
@@ -61,7 +62,7 @@ export default function Category_detail() {
 
 
             <View style={{flex: 4}}>
-                <View style={{flex: 2, flexDirection: "row"}}>
+                <View style={{flex: 2, flexDirection: "row", justifyContent: 'space-between',}}>
                     <View style={{flex: 1}}>
                         <TouchableOpacity onPress={() => {
                             Alert.alert("okok")
@@ -69,7 +70,7 @@ export default function Category_detail() {
                                           style={styles.touchalbe}
                         >
                             <View style={styles.container}>
-                                <Text style={styles.title}>Nhật ký sản xuất</Text>
+                                <Text style={styles.titleNhatKy}>Nhật ký sản xuất</Text>
                                 <Image style={styles.categoryImg} source={farm}/>
                             </View>
                         </TouchableOpacity>
@@ -81,7 +82,7 @@ export default function Category_detail() {
                                           style={styles.touchalbe}
                         >
                             <View style={styles.container}>
-                                <Text style={styles.title}>Nhật ký môi trường</Text>
+                                <Text style={styles.titleNhatKy}>Nhật ký môi trường</Text>
                                 <Image style={styles.categoryImg} source={cloud}/>
                             </View>
                         </TouchableOpacity>
@@ -134,8 +135,9 @@ export default function Category_detail() {
 const styles = StyleSheet.create({
     container: {
         alignItems: "center",
-        padding: 16,
-        borderRadius: 4,
+        color: "black",
+        borderRadius: 10,
+        paddingTop: 16,
         backgroundColor: "#fff",
         shadowColor: "#000",
         shadowOpacity: 0.3,
@@ -146,6 +148,8 @@ const styles = StyleSheet.create({
         },
         marginBottom: 16,
         height: 130,
+        marginRight: 20,
+        marginLeft: 8
 
     },
     title: {
@@ -154,11 +158,12 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textAlign: "center",
         paddingTop: 10,
-        color: "green"
+        color: "#fff"
     },
     categoryImg: {
         width: 50,
-        height: 50
+        height: 50,
+
     },
     touchalbe: {
         paddingTop: 16,
@@ -168,6 +173,7 @@ const styles = StyleSheet.create({
     },
     detailScreen: {
         flex: 1,
+        backgroundColor: '#89c263',
     },
     headerDeatail: {
         flex: 1,
@@ -175,8 +181,9 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     },
     imgFarm: {
-        width: 25,
-        height: 25
+        width: 30,
+        height: 30,
+        marginRight: 16
     },
     buttonDetail: {
         alignItems: "center",
@@ -186,7 +193,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 10,
         width: "90%",
-        marginLeft: 16,
+        marginLeft: 8,
+        marginRight: 8,
         borderRadius: 7,
 
     },
@@ -207,7 +215,16 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 10,
         width: "95%",
-        marginLeft: 16,
+        marginLeft: 8,
+        marginRight: 8,
         borderRadius: 7,
+    },
+    titleNhatKy: {
+        textTransform: "uppercase",
+        marginBottom: 8,
+        fontWeight: "bold",
+        textAlign: "center",
+        paddingTop: 10,
+        color: "black"
     }
 });
