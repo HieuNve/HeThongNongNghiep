@@ -3,7 +3,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View, Alert, Button} from 're
 import farm from "../assets/diary.png";
 import frui from "../assets/fruit-tree.png"
 import cloud from "../assets/cloudy.png"
-import nature from "../assets/nature.png"
+
 import {useNavigation} from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -42,10 +42,11 @@ export default function Category_detail() {
                     <View
                         style={{
                             textAlign: 'center',
-                            justifyContent: 'space-between',
+
+
                         }}>
                         <Text style={styles.title}>
-                            <Image source={nature} style={styles.imgFarm}/>
+                            <Image source={frui} style={styles.imgFarm}/>
                             {nameFarm}
                         </Text>
                     </View>
@@ -181,9 +182,8 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     },
     imgFarm: {
-        width: 30,
-        height: 30,
-        marginRight: 16
+        width: 25,
+        height: 25
     },
     buttonDetail: {
         alignItems: "center",
