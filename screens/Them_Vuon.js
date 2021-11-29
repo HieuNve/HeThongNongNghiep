@@ -1,19 +1,107 @@
 import {StatusBar} from 'expo-status-bar';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Alert, Button, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 import {MaterialIcons} from '@expo/vector-icons';
 import {Image} from "react-native";
 import logo from "../assets/logo.png"
-import {ScrollView} from "react-native";
+import {ScrollView, Picker} from "react-native";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 export default function Them_Vuon({navigation}) {
+    const [id_tree, setIdTree] = useState("chọn cây");
+    const [farm_name, setFarm_name] = useState("")
+    const [location, setLocation] = useState("")
+    const [area, setArea] = useState("")
+    const [id_device, setIdDevice] = useState("")
+    const [idUser, setIdUser] = useState("")
+    const [time_finish, setTimeFinish] = useState("")
+
+
+    const getCurrentDate = () => {
+
+        var date = new Date().getDate();
+        var month = new Date().getMonth() + 1;
+        var year = new Date().getFullYear();
+
+        //Alert.alert(date + '-' + month + '-' + year);
+        // You can turn it in to your desired format
+        return date + '-' + month + '-' + year;//format: dd-mm-yyyy;
+    }
+
+
+    const getData = async () => {
+        try {
+            const idUsers = await AsyncStorage.getItem('id')
+            console.log(idUsers)
+            if (idUser != null) {
+                setIdUser(idUsers)
+            }
+
+        } catch (e) {
+            // error reading value
+        }
+    }
+    useEffect(()=>{
+        getData()
+    }, [idUser])
 
     function AddFarm() {
-        Alert.alert("Thêm Thành Công")
-        console.log("thêm ok")
-        navigation.navigate("home")
+        let time = getCurrentDate()
+        console.log({id_tree})
+        console.log({farm_name})
+        console.log({location})
+        console.log({area})
+        console.log({id_device})
+        console.log({time})
+
+        if (farm_name.length <= 0 || location.length <= 0 || area.length <= 0 || id_device <= 0 || id_tree <= 0) {
+            console.log("no")
+            Alert.alert("Nhập lại thông tin vườn")
+        } else {
+            const request_add_farm = async () => {
+                const result = await axios({
+                    method: 'post',
+                    url: "http://159.223.56.85/api/farm",
+                    headers: {},
+                    data: {
+                        personID: idUser,
+                        deviceID: 2,
+                        treeID: id_tree,
+                        farmName: farm_name,
+                        location: location,
+                        area: area,
+                        timeStart: time,
+                        timeFinish: time
+                    }
+                })
+                console.log(result)
+                return result
+            }
+            request_add_farm().then(res => {
+                console.log(res.data.success)
+                if (res.data.success === 1) {
+                    Alert.alert("thêm thành công")
+                    console.log("thêm thành công")
+                    navigation.navigate("home")
+                } else {
+
+                    console.log("đăng ký không thành công")
+                }
+            }).catch((error) => {
+                console.log(error)
+                if (error.response) {
+                    console.log("lỗi response")
+                } else if (error.request) {
+                    console.log("404")
+                } else if (error.message) {
+                    console.log("lỗi mess")
+                }
+            })
+        }
+
     }
 
     function CacelAddFarm() {
@@ -35,26 +123,37 @@ export default function Them_Vuon({navigation}) {
                         <TextInput style={styles.from2}
                                    keyboardType='Tên Vườn'
                                    autoFocus={true}
-                                   placeholder='  E-mail adress'
+                                   placeholder='  Tên Vườn'
                                    placeholderTextColor='#ffffff'
                                    textAlign='center'
+                                   value={farm_name}
+                                   onChangeText={(farmName) => {
+                                       setFarm_name(farmName)
+                                   }}
 
                         />
 
-                        <TextInput style={styles.from3}
-                                   keyboardType='numeric'
-                                   placeholder='  Cây trồng'
-                                   autoFocus={true}
-                                   placeholderTextColor='#ffffff'
-                                   textAlign='center'>
-
-                        </TextInput>
+                        <Picker
+                            selectedValue={id_tree}
+                            style={styles.from3}
+                            onValueChange={(itemValue, itemIndex) => setIdTree(itemValue)}
+                        >
+                            <Picker.Item label="Chọn cây" value="1"/>
+                            <Picker.Item label="Cây cà chua" value="1"/>
+                            <Picker.Item label="Rau cải" value="1"/>
+                        </Picker>
                         <TextInput style={styles.from3}
                                    keyboardType='numeric'
                                    placeholder=' Diện tích'
                                    autoFocus={true}
                                    placeholderTextColor='#ffffff'
-                                   textAlign='center'>
+                                   textAlign='center'
+                                   value={area}
+                                   onChangeText={(Area) => {
+                                       setArea(Area)
+                                   }}
+
+                        >
 
                         </TextInput>
                         <TextInput style={styles.from3}
@@ -62,7 +161,13 @@ export default function Them_Vuon({navigation}) {
                                    placeholder='  Vị trí'
                                    autoFocus={true}
                                    placeholderTextColor='#ffffff'
-                                   textAlign='center'>
+                                   textAlign='center'
+                                   value={location}
+                                   onChangeText={(Location) => {
+                                       setLocation(Location)
+                                   }}
+
+                        >
 
                         </TextInput>
                         <TextInput style={styles.from3}
@@ -70,7 +175,12 @@ export default function Them_Vuon({navigation}) {
                                    placeholder='  ID thiết bị'
                                    autoFocus={true}
                                    placeholderTextColor='#ffffff'
-                                   textAlign='center'>
+                                   textAlign='center'
+                                   value={id_device}
+                                   onChangeText={(IdDevice) => {
+                                       setIdDevice(IdDevice)
+                                   }}
+                        >
 
                         </TextInput>
                         <View style={{
