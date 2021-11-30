@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import {Alert, Button, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 import {MaterialIcons} from '@expo/vector-icons';
+import RNPickerSelect from "react-native-picker-select";
 import {Image} from "react-native";
 import logo from "../assets/logo.png"
 import {ScrollView, Picker} from "react-native";
@@ -19,6 +20,13 @@ export default function Them_Vuon({navigation}) {
     const [idUser, setIdUser] = useState("")
     const [time_finish, setTimeFinish] = useState("")
 
+    const list_tree = [
+        {label: 'cà chua', value: '2'},
+        {label: 'cà chua1', value: '3'},
+        {label: 'cà chua2', value: '4'},
+        {label: 'cà chua3', value: '5'},
+        {label: 'cà chua4', value: '6'},
+    ]
 
     const getCurrentDate = () => {
 
@@ -44,7 +52,7 @@ export default function Them_Vuon({navigation}) {
             // error reading value
         }
     }
-    useEffect(()=>{
+    useEffect(() => {
         getData()
     }, [idUser])
 
@@ -130,18 +138,18 @@ export default function Them_Vuon({navigation}) {
                                    onChangeText={(farmName) => {
                                        setFarm_name(farmName)
                                    }}
-
                         />
 
-                        <Picker
-                            selectedValue={id_tree}
-                            style={styles.from3}
-                            onValueChange={(itemValue, itemIndex) => setIdTree(itemValue)}
-                        >
-                            <Picker.Item label="Chọn cây" value="1"/>
-                            <Picker.Item label="Cây cà chua" value="1"/>
-                            <Picker.Item label="Rau cải" value="1"/>
-                        </Picker>
+                        <RNPickerSelect
+                            placeholder={{
+                                label: 'Chọn cây...',
+                                value: null,
+                            }}
+                            style={{...pickerSelectStyles}}
+                            onValueChange={(value) => setIdTree(value)}
+                            items={list_tree}
+                        />
+
                         <TextInput style={styles.from3}
                                    keyboardType='numeric'
                                    placeholder=' Diện tích'
@@ -152,7 +160,6 @@ export default function Them_Vuon({navigation}) {
                                    onChangeText={(Area) => {
                                        setArea(Area)
                                    }}
-
                         >
 
                         </TextInput>
@@ -277,6 +284,18 @@ const styles = StyleSheet.create({
             height: 0
         },
     },
+
+    formSelect: {
+        fontSize: 16,
+        paddingTop: 13,
+        paddingHorizontal: 10,
+        paddingBottom: 12,
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 4,
+        backgroundColor: 'white',
+        color: 'black',
+    },
     action: {
         margin: 60,
         textAlign: 'center',
@@ -350,5 +369,57 @@ const styles = StyleSheet.create({
         color: "white"
     },
 
-
+});
+const pickerSelectStyles = StyleSheet.create({
+    inputIOS: {
+        marginTop: 30,
+        height: 50,
+        backgroundColor: '#94c876',
+        borderRadius: 25,
+        width: "90%",
+        marginLeft: 20,
+        fontWeight: "bold",
+        fontSize: 18,
+        shadowColor: "#000",
+        shadowOpacity: 0.3,
+        shadowRadius: 10,
+        shadowOffset: {
+            width: 0,
+            height: 0
+        }, // to ensure the text is never behind the icon
+    },
+    inputAndroid: {
+        marginTop: 30,
+        height: 50,
+        backgroundColor: '#94c876',
+        borderRadius: 25,
+        width: "90%",
+        marginLeft: 20,
+        fontWeight: "bold",
+        fontSize: 18,
+        shadowColor: "#000",
+        shadowOpacity: 0.3,
+        shadowRadius: 10,
+        shadowOffset: {
+            width: 0,
+            height: 0
+        }, // to ensure the text is never behind the icon
+    },
+    inputWeb: {
+        marginTop: 30,
+        height: 50,
+        backgroundColor: '#94c876',
+        borderRadius: 25,
+        width: "90%",
+        marginLeft: 20,
+        fontWeight: "bold",
+        fontSize: 18,
+        shadowColor: "#000",
+        shadowOpacity: 0.3,
+        shadowRadius: 10,
+        shadowOffset: {
+            width: 0,
+            height: 0
+        },
+    }
 });

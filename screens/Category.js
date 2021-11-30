@@ -91,7 +91,7 @@ export default function Category({navigation}) {
                 visibleFarm ? (
                     <ScrollView style={{paddingTop: 16, paddingLeft: 16, paddingRight: 16}}>
                         {listFarm.map(value =>
-                            <CategoryListItem key={value.location} name={value.location} timestart={value.location}/>)}
+                            <CategoryListItem key={value.farmID} name={value.farmName} timestart={value.location}/>)}
                     </ScrollView>
                 ) : null
             }
