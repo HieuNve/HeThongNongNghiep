@@ -18,7 +18,9 @@ export default function Controller({navigation}) {
     const [statusMB, setStatusMB] = useState("")
     const toggleSwitchMayBom = () => {
         setMaybom(previousState => !previousState);
-        if (maybom === false) {
+
+        if (!maybom) {
+
             const request_mayBom = async () => {
                 const result = await axios({
                     method: 'get',
@@ -47,6 +49,8 @@ export default function Controller({navigation}) {
 
             })
         }
+
+
     }
     const toggleSwitchled = () => setLed(previousState => !previousState);
     const toggleSwitchrelay3 = () => setMaybom(previousState => !previousState);

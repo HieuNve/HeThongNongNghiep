@@ -42,16 +42,15 @@ export default function Category({navigation}) {
     const [area, setArea] = useState("")
     const [id_device, setIdDevice] = useState("")
 
-    const list_tree = [
-        {label: 'cà chua', value: '2'},
-        {label: 'cà chua1', value: '3'},
-        {label: 'cà chua2', value: '4'},
-        {label: 'cà chua3', value: '5'},
-        {label: 'cà chua4', value: '6'},
-    ]
+    const getCurrentDate = () => {
 
-    function ToAddFarm() {
-        setModalVisible(true)
+        let date = new Date().getDate();
+        let month = new Date().getMonth() + 1;
+        let year = new Date().getFullYear();
+
+        //Alert.alert(date + '-' + month + '-' + year);
+        // You can turn it in to your desired format
+        return date + '-' + month + '-' + year;//format: dd-mm-yyyy;
     }
 
     const getData = async () => {
@@ -66,6 +65,19 @@ export default function Category({navigation}) {
             // error reading value
         }
     }
+
+    const list_tree = [
+        {label: 'cà chua', value: '2'},
+        {label: 'cà chua1', value: '3'},
+        {label: 'cà chua2', value: '4'},
+        {label: 'cà chua3', value: '5'},
+        {label: 'cà chua4', value: '6'},
+    ]
+
+    function ToAddFarm() {
+        setModalVisible(true)
+    }
+
 
     useEffect(() => {
         getData()
@@ -87,23 +99,54 @@ export default function Category({navigation}) {
 
             }
         }).catch((error) => {
-            console.log(error)
-            if (error.response) {
-                console.log("lỗi response")
-
-
-            } else if (error.request) {
-
-                console.log("404")
-            } else if (error.message) {
-                console.log("lỗi mess")
-            }
         })
     }, [idUser])
-    console.log({idUser})
 
+    const addFarm = () => {
+        let time = getCurrentDate()
+        console.log({id_tree})
+        console.log({farm_name})
+        console.log({location})
+        console.log({area})
+        console.log({id_device})
+        console.log({time})
 
-    console.log(listFarm)
+        if (farm_name.length <= 0 || location.length <= 0 || area.length <= 0 || id_device <= 0 || id_tree <= 0) {
+            console.log("no")
+            Alert.alert("Nhập lại thông tin vườn")
+        } else {
+            const request_add_farm = async () => {
+                const result = await axios({
+                    method: 'post',
+                    url: "http://159.223.56.85/api/farm",
+                    headers: {},
+                    data: {
+                        personID: idUser,
+                        deviceID: 1,
+                        treeID: id_tree,
+                        farmName: farm_name,
+                        location: location,
+                        area: area,
+                        timeStart: time,
+                        timeFinish: time
+                    }
+                })
+                console.log(result)
+                return result
+            }
+            request_add_farm().then(res => {
+                console.log(res.data.success)
+                if (res.data.success === 1) {
+                    Alert.alert("thêm thành công")
+                    console.log("thêm thành công")
+                    setModalVisible(!modalVisible)
+                } else {
+                    console.log("Thêm không thành công")
+                }
+            }).catch((error) => {
+            })
+        }
+    }
 
 
     return (
@@ -143,98 +186,99 @@ export default function Category({navigation}) {
                     <View style={styles.centeredView}>
 
                         <View style={styles.modalView}>
-                                <TextInput style={styles.from3}
-                                           keyboardType='Tên Vườn'
-                                           placeholder='  Tên Vườn'
-                                           placeholderTextColor='#ffffff'
+                            <TextInput style={styles.from3}
+                                       keyboardType='Tên Vườn'
+                                       placeholder='  Tên Vườn'
+                                       placeholderTextColor='#ffffff'
 
-                                           value={farm_name}
-                                           onChangeText={(farmName) => {
-                                               setFarm_name(farmName)
-                                           }}
-                                />
+                                       value={farm_name}
+                                       onChangeText={(farmName) => {
+                                           setFarm_name(farmName)
+                                       }}
+                            />
 
-                                <RNPickerSelect
-                                    placeholder={{
-                                        label: 'Chọn cây...',
-                                        value: null,
-                                    }}
-                                    style={{...pickerSelectStyles}}
-                                    onValueChange={(value) => setIdTree(value)}
-                                    items={list_tree}
-                                />
+                            <RNPickerSelect
+                                placeholder={{
+                                    label: 'Chọn cây...',
+                                    value: null,
+                                }}
+                                style={{...pickerSelectStyles}}
+                                onValueChange={(value) => setIdTree(value)}
+                                items={list_tree}
+                            />
 
-                                <TextInput style={styles.from3}
+                            <TextInput style={styles.from3}
 
-                                           placeholder=' Diện tích'
+                                       placeholder=' Diện tích'
 
-                                           placeholderTextColor='#ffffff'
+                                       placeholderTextColor='#ffffff'
 
-                                           value={area}
-                                           onChangeText={(Area) => {
-                                               setArea(Area)
-                                           }}
-                                >
+                                       value={area}
+                                       onChangeText={(Area) => {
+                                           setArea(Area)
+                                       }}
+                            >
 
-                                </TextInput>
-                                <TextInput style={styles.from3}
+                            </TextInput>
+                            <TextInput style={styles.from3}
 
-                                           placeholder='  Vị trí'
+                                       placeholder='  Vị trí'
 
-                                           placeholderTextColor='#ffffff'
+                                       placeholderTextColor='#ffffff'
 
-                                           value={location}
-                                           onChangeText={(Location) => {
-                                               setLocation(Location)
-                                           }}
+                                       value={location}
+                                       onChangeText={(Location) => {
+                                           setLocation(Location)
+                                       }}
 
-                                >
+                            >
 
-                                </TextInput>
-                                <TextInput style={styles.from3}
+                            </TextInput>
+                            <TextInput style={styles.from3}
 
-                                           placeholder='  ID thiết bị'
+                                       placeholder='  ID thiết bị'
 
-                                           placeholderTextColor='#ffffff'
+                                       placeholderTextColor='#ffffff'
 
-                                           value={id_device}
-                                           onChangeText={(IdDevice) => {
-                                               setIdDevice(IdDevice)
-                                           }}
-                                >
+                                       value={id_device}
+                                       onChangeText={(IdDevice) => {
+                                           setIdDevice(IdDevice)
+                                       }}
+                            >
 
-                                </TextInput>
+                            </TextInput>
 
-                                <View style={{
-                                    flex: 1,
-                                    flexDirection: "row",
-                                    alignItems: "center",
-                                    paddingTop: 16,
-                                    paddingBottom: 20
-                                }}>
-                                    <View style={{flex: 1, alignItems: 'center'}}>
-                                        <TouchableOpacity
-                                            onPress={() => {
-                                                setModalVisible(!modalVisible)
-                                            }}
-                                        >
-                                            <View style={styles.DanhSach}>
-                                                <Text style={styles.titleButton}>Hủy</Text>
-                                            </View>
-                                        </TouchableOpacity>
-                                    </View>
-                                    <View style={{flex: 1, alignItems: 'center'}}>
-                                        <TouchableOpacity
-                                            onPress={() => {
-                                                setModalVisible(!modalVisible)
-                                            }}
-                                        >
-                                            <View style={styles.DanhSach}>
-                                                <Text style={styles.titleButton}>Thêm Vườn</Text>
-                                            </View>
-                                        </TouchableOpacity>
-                                    </View>
+                            <View style={{
+                                flex: 1,
+                                flexDirection: "row",
+                                alignItems: "center",
+                                paddingTop: 16,
+                                paddingBottom: 20
+                            }}>
+                                <View style={{flex: 1, alignItems: 'center'}}>
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            setModalVisible(!modalVisible)
+                                        }}
+                                    >
+                                        <View style={styles.DanhSach}>
+                                            <Text style={styles.titleButton}>Hủy</Text>
+                                        </View>
+                                    </TouchableOpacity>
                                 </View>
+                                <View style={{flex: 1, alignItems: 'center'}}>
+                                    <TouchableOpacity
+                                        onPress={() => {
+
+                                            addFarm()
+                                        }}
+                                    >
+                                        <View style={styles.DanhSach}>
+                                            <Text style={styles.titleButton}>Thêm Vườn</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
 
                         </View>
                     </View>

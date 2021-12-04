@@ -8,6 +8,8 @@ import MoiTruong from "./MoiTruong";
 import Them_Vuon from "./Them_Vuon";
 import Controller from "./Controller"
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import FarmDiary from "./FarmDiary";
+import FarmDiaryScreen from "./FarmDiary";
 const Drawer = createDrawerNavigator();
 
 const Stack = createStackNavigator();
@@ -36,6 +38,11 @@ const NoteScreens = () => {
                               }}
                 />
                 <Stack.Screen name={"DieuKhien"} component={Controller}
+                              options={{
+                                  headerShown: false
+                              }}
+                />
+                <Stack.Screen name={"diary"} component={FarmDiaryScreen}
                               options={{
                                   headerShown: false
                               }}

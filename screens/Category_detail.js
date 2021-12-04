@@ -17,6 +17,9 @@ export default function Category_detail() {
     const ToNhatKy = () => {
         navigation.navigate("Moitruong")
     }
+    const TonhatkySanXuat = () => {
+        navigation.navigate("diary")
+    }
 
     const getDataFarm = async () => {
         try {
@@ -66,7 +69,7 @@ export default function Category_detail() {
                 <View style={{flex: 2, flexDirection: "row", justifyContent: 'space-between',}}>
                     <View style={{flex: 1}}>
                         <TouchableOpacity onPress={() => {
-                            Alert.alert("okok")
+                            TonhatkySanXuat()
                         }}
                                           style={styles.touchalbe}
                         >
