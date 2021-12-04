@@ -9,7 +9,6 @@ import MyTabs from "./tabnavigation/Tab_Navigation"
 import Chao from "./screens/Chao";
 import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
-import MyDrawer from "./drawnavigation/DrawerNavigation";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NoteScreens from "./screens/NoteScreens";
 

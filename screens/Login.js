@@ -51,10 +51,7 @@ export default function Login({navigation}) {
                 console.log(error)
                 if (error.response) {
                     console.log("lỗi response")
-                    Alert.alert("error 500")
-                    console.log("500")
                 } else if (error.request) {
-                    Alert.alert("error 500")
                     console.log("404")
                 } else if (error.message) {
                     console.log("lỗi mess")
@@ -95,7 +92,7 @@ export default function Login({navigation}) {
             <View style={{flex: 4}}>
                 <View style={{flex: 2}}>
                     <TextInput style={styles.from2}
-                               placeholder='   tên đăng nhập'
+                               placeholder='   Tên đăng nhập'
                                placeholderTextColor='#ffffff'
                                textAlign='center'
                                value={username}

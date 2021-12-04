@@ -12,18 +12,18 @@ import Category_detail from "../screens/Category_detail";
 import {useNavigation} from '@react-navigation/native'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function CategoryListItem({name, timestart}) {
+export default function CategoryListItem({name, time_start, area, location}) {
 
     const navigation = useNavigation();
     const onClickFarm = async () => {
         navigation.navigate("detail")
-        save_data_farm(name)
+        await save_data_farm(name, time_start)
     }
-    const save_data_farm = async (value) => {
+    const save_data_farm = async (value, time_start) => {
 
         try {
             await AsyncStorage.setItem('nameFarm', value)
-            await AsyncStorage.setItem('timestart', timestart)
+            await AsyncStorage.setItem('timestart', time_start)
         } catch (e) {
             // saving error
         }
@@ -34,8 +34,26 @@ export default function CategoryListItem({name, timestart}) {
             onClickFarm()
         }}>
             <View style={styles.container}>
-                <Text style={styles.title}>{name}</Text>
-                <Image style={styles.categoryImg} source={farm}/>
+                <View
+                    style={{
+                        flex: 2
+                    }}
+                >
+                    <Text style={styles.title}>Tên vườn: {name}</Text>
+                    <Text style={styles.title}>Diện tích: {area}</Text>
+                    <Text style={styles.title}>Địa điểm: {location}</Text>
+                    <Text style={styles.title}>Ngày bắt đầu: {time_start}</Text>
+                </View>
+
+                <View
+                    style={{
+                        flex: 1,
+                        justifyContent: 'center'
+                    }}
+                >
+                    <Image style={styles.categoryImg} source={farm}/>
+                </View>
+
             </View>
         </TouchableOpacity>
     );
@@ -44,9 +62,10 @@ export default function CategoryListItem({name, timestart}) {
 }
 const styles = StyleSheet.create({
     container: {
-        alignItems: "center",
+        flex: 3,
+        flexDirection: "row",
         padding: 16,
-        borderRadius: 4,
+        borderRadius: 10,
         backgroundColor: "#fff",
         shadowColor: "#000",
         shadowOpacity: 0.3,
@@ -60,7 +79,6 @@ const styles = StyleSheet.create({
     title: {
         textTransform: "uppercase",
         marginBottom: 8,
-        fontWeight: "200"
     },
     categoryImg: {
         width: 64,
