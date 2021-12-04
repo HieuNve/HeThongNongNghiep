@@ -16,14 +16,8 @@ export default function User_Info({navigation}) {
         setModalVisible(true)
     }
     const onlogout = () => {
-
-        try {
-            AsyncStorage.clear()
-        } catch (e) {
-
-        }
         setModalVisible(!modalVisible)
-        navigation.navigate("login")
+        // navigation.navigate("login")
     }
     const getData = async () => {
         try {

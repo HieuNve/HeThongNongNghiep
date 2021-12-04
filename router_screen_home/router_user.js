@@ -21,21 +21,21 @@ const Router_user = () => {
                                   headerShown: false,
                               }}
                 />
-                <Stack.Screen name={"login"} component={Login}
-                              options={{
-                                  headerShown: false,
-                              }}
-                />
-                <Stack.Screen name={"tab"} component={MyTabs}
-                              options={{
-                                  headerShown: false
-                              }}
-                />
-                <Stack.Screen name={"signUp"} component={SignUp}
-                              options={{
-                                  headerShown: false,
-                              }}
-                />
+                {/*<Stack.Screen name={"login"} component={Login}*/}
+                {/*              options={{*/}
+                {/*                  headerShown: false,*/}
+                {/*              }}*/}
+                {/*/>*/}
+                {/*<Stack.Screen name={"tab"} component={MyTabs}*/}
+                {/*              options={{*/}
+                {/*                  headerShown: false*/}
+                {/*              }}*/}
+                {/*/>*/}
+                {/*<Stack.Screen name={"signUp"} component={SignUp}*/}
+                {/*              options={{*/}
+                {/*                  headerShown: false,*/}
+                {/*              }}*/}
+                {/*/>*/}
 
             </Stack.Navigator>
         </NavigationContainer>
