@@ -6,11 +6,91 @@ import motor from "../assets/motor.png"
 import light from "../assets/lightbulb.png"
 import {Image} from "react-native";
 import sun from "../assets/sun.png";
+import axios from "axios";
 
 
 export default function Controller({navigation}) {
     const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const [maybom, setMaybom] = useState("")
+    const [led, setLed] = useState("")
+    const [relay3, setRelay3] = useState("")
+    const [relay4, setRelay4] = useState("")
+    const [statusMB, setStatusMB] = useState("")
+    const toggleSwitchMayBom = () => {
+        setMaybom(previousState => !previousState);
+        if (maybom === false) {
+            const request_mayBom = async () => {
+                const result = await axios({
+                    method: 'get',
+                    url: `http://159.223.56.85/api/sensors/relay?relay1=1&relay2=0&deviceID=1`,
+                    headers: {},
+                })
+                console.log("Bật")
+                console.log(result)
+                return result
+            }
+            request_mayBom().then(res => {
+
+            })
+        } else {
+            const request_mayBomOff = async () => {
+                const result = await axios({
+                    method: 'get',
+                    url: `http://159.223.56.85/api/sensors/relay?relay1=0&relay2=0&deviceID=1`,
+                    headers: {},
+                })
+                console.log("tắt")
+                console.log(result)
+                return result
+            }
+            request_mayBomOff().then(res => {
+
+            })
+        }
+    }
+    const toggleSwitchled = () => setLed(previousState => !previousState);
+    const toggleSwitchrelay3 = () => setMaybom(previousState => !previousState);
+    const toggleSwitchrelay4 = () => setMaybom(previousState => !previousState);
+
+
+    useEffect(() => {
+        const request_relay = async () => {
+            const result = await axios({
+                method: 'get',
+                url: `http://159.223.56.85/api/sensors/relayDevice`,
+                headers: {},
+            })
+            return result
+        }
+        request_relay().then(res => {
+            let value = res.data.data
+            console.log({value})
+            if (value.relay1 === 1) {
+                setMaybom(true)
+            } else {
+                setMaybom(false)
+            }
+
+            if (value.relay2 === 1) {
+                setLed(true)
+            } else {
+                setLed(false)
+            }
+
+
+        }).catch((error) => {
+            console.log(error)
+            if (error.response) {
+                console.log("lỗi response")
+            } else if (error.request) {
+
+                console.log("404")
+            } else if (error.message) {
+                console.log("lỗi mess")
+            }
+        })
+    }, [])
+
 
     const BacktoMt = () => {
         navigation.navigate("Moitruong")
@@ -31,10 +111,10 @@ export default function Controller({navigation}) {
                 <View style={styles.switchButton}>
                     <Switch
                         trackColor={{false: "#767577", true: "#81b0ff"}}
-                        thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+                        thumbColor={maybom ? "#f5dd4b" : "#f4f3f4"}
                         ios_backgroundColor="#3e3e3e"
-                        onValueChange={toggleSwitch}
-                        value={isEnabled}
+                        onValueChange={toggleSwitchMayBom}
+                        value={maybom}
                     />
                 </View>
             </View>
@@ -49,10 +129,10 @@ export default function Controller({navigation}) {
                 <View style={styles.switchButton}>
                     <Switch
                         trackColor={{false: "#767577", true: "#81b0ff"}}
-                        thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+                        thumbColor={led ? "#f5dd4b" : "#f4f3f4"}
                         ios_backgroundColor="#3e3e3e"
-                        onValueChange={toggleSwitch}
-                        value={isEnabled}
+                        onValueChange={toggleSwitchled}
+                        value={led}
                     />
                 </View>
             </View>
@@ -67,10 +147,10 @@ export default function Controller({navigation}) {
                 <View style={styles.switchButton}>
                     <Switch
                         trackColor={{false: "#767577", true: "#81b0ff"}}
-                        thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+                        thumbColor={led ? "#f5dd4b" : "#f4f3f4"}
                         ios_backgroundColor="#3e3e3e"
-                        onValueChange={toggleSwitch}
-                        value={isEnabled}
+                        onValueChange={toggleSwitchled}
+                        value={led}
                     />
                 </View>
             </View>
