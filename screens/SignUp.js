@@ -59,6 +59,10 @@ export default function SignUp({navigation}) {
         }
 
     }
+
+    const gotoLogin = () => {
+        navigation.navigate("login")
+    }
     return (
 
         <View style={styles.container}>
@@ -84,7 +88,7 @@ export default function SignUp({navigation}) {
                     />
 
                     <TextInput style={styles.from3}
-                               placeholder='  Tên'
+                               placeholder='  Tên đăng nhập'
                                placeholderTextColor='#ffffff'
                                textAlign='center'
                                value={username_value}
@@ -120,17 +124,38 @@ export default function SignUp({navigation}) {
                     >
 
                     </TextInput>
-                    <View style={styles.from1}>
-                        <View>
-                            <TouchableOpacity style={styles.button}
-                                              onPress={() => {
-                                                  loginSignup()
-                                              }}
+
+                    <View style={{
+                        flex: 1,
+                        flexDirection: "row",
+                        alignItems: "center",
+                        paddingTop: 16,
+                        paddingBottom: 20
+                    }}>
+                        <View style={{flex: 1, alignItems: 'center'}}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    gotoLogin()
+                                }}
                             >
-                                <Text style={styles.buttonText}>Đăng ký</Text>
+                                <View style={styles.DanhSach}>
+                                    <Text style={styles.titleButton}>Hủy</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{flex: 1, alignItems: 'center'}}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    loginSignup()
+                                }}
+                            >
+                                <View style={styles.DanhSach}>
+                                    <Text style={styles.titleButton}>Đăng Ký</Text>
+                                </View>
                             </TouchableOpacity>
                         </View>
                     </View>
+
                 </View>
 
             </View>
@@ -242,7 +267,24 @@ const styles = StyleSheet.create({
         color: "#ffffff",
         fontWeight: "bold",
         fontSize: 16
-    }
+    },
+    DanhSach: {
+        alignItems: "center",
+        padding: 16,
+        backgroundColor: "#e7963d",
+        shadowColor: "#000",
+        shadowOpacity: 0.3,
+        shadowRadius: 10,
+        width: 150,
+        marginLeft: 16,
+        borderRadius: 10,
+    },
+    titleButton: {
+        textTransform: "uppercase",
+        fontWeight: "bold",
+        textAlign: "center",
+        color: "white"
+    },
 
 
 });

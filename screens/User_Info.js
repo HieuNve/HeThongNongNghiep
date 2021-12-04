@@ -11,10 +11,19 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function User_Info() {
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
+
+    const logout = () => {
+        console.log("dddd")
+        try {
+            AsyncStorage.removeItem('username')
+        } catch (e) {
+
+        }
+
+    }
     const getData = async () => {
         try {
             const username = await AsyncStorage.getItem('username')
-            const phone = await AsyncStorage.getItem('phone')
             if (username != null) {
                 setName(username)
                 setPhone(phone)
@@ -76,7 +85,11 @@ export default function User_Info() {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                        logout()
+                    }}
+                >
                     <View style={styles.item}>
                         <View style={styles.infoContent}>
                             <Text style={styles.info}>

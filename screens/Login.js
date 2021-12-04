@@ -7,6 +7,8 @@ import {Image} from "react-native";
 import logo from "../assets/logo.png"
 import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {NavigationContainer} from "@react-navigation/native";
+import MyTabs from "../tabnavigation/Tab_Navigation";
 
 
 export default function Login({navigation}) {
@@ -39,8 +41,8 @@ export default function Login({navigation}) {
                     let phone = res.data.phoneNumber
                     let uuid = res.data.uuid
                     storeData(username, password, phone, uuid)
-                    navigation.navigate("tab")
                     console.log("đăng nhập thành công")
+                    navigation.navigate("tab")
                 } else {
                     Alert.alert("Thông tin tài khoản mật khẩu không chính xác")
                     console.log("sai tk mk")
@@ -93,9 +95,7 @@ export default function Login({navigation}) {
             <View style={{flex: 4}}>
                 <View style={{flex: 2}}>
                     <TextInput style={styles.from2}
-                               keyboardType='email-address'
-                               autoFocus={true}
-                               placeholder='  E-mail adress'
+                               placeholder='   tên đăng nhập'
                                placeholderTextColor='#ffffff'
                                textAlign='center'
                                value={username}

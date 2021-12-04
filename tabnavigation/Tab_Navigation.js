@@ -64,7 +64,7 @@ function Mytab() {
 
 export default function MyTabs() {
     return (
-        <NavigationContainer independent={true}>
+        <NavigationContainer>
             <Mytab/>
         </NavigationContainer>
     );

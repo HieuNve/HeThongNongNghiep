@@ -8,6 +8,9 @@ import MoiTruong from "./MoiTruong";
 import Them_Vuon from "./Them_Vuon";
 import Controller from "./Controller"
 import * as Constants from "constants";
+import User_Info from "./User_Info";
+import { createDrawerNavigator } from '@react-navigation/drawer';
+const Drawer = createDrawerNavigator();
 
 const Stack = createStackNavigator();
 const NoteScreens = () => {

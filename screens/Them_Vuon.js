@@ -130,7 +130,6 @@ export default function Them_Vuon({navigation}) {
                     <View style={{flex: 2}}>
                         <TextInput style={styles.from2}
                                    keyboardType='Tên Vườn'
-                                   autoFocus={true}
                                    placeholder='  Tên Vườn'
                                    placeholderTextColor='#ffffff'
                                    textAlign='center'
@@ -151,9 +150,9 @@ export default function Them_Vuon({navigation}) {
                         />
 
                         <TextInput style={styles.from3}
-                                   keyboardType='numeric'
+
                                    placeholder=' Diện tích'
-                                   autoFocus={true}
+
                                    placeholderTextColor='#ffffff'
                                    textAlign='center'
                                    value={area}
@@ -164,9 +163,9 @@ export default function Them_Vuon({navigation}) {
 
                         </TextInput>
                         <TextInput style={styles.from3}
-                                   keyboardType='numeric'
+
                                    placeholder='  Vị trí'
-                                   autoFocus={true}
+
                                    placeholderTextColor='#ffffff'
                                    textAlign='center'
                                    value={location}
@@ -178,9 +177,9 @@ export default function Them_Vuon({navigation}) {
 
                         </TextInput>
                         <TextInput style={styles.from3}
-                                   keyboardType='numeric'
+
                                    placeholder='  ID thiết bị'
-                                   autoFocus={true}
+
                                    placeholderTextColor='#ffffff'
                                    textAlign='center'
                                    value={id_device}
