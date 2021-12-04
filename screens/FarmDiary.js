@@ -46,8 +46,6 @@ export default function FarmDiaryScreen() {
                             <TextInput style={styles.from3}
                                        placeholder='  Dịch bênh'
                                        placeholderTextColor='#000000'
-                                       multiline={true}
-                                       numberOfLines={4}
                                        value={Disease}
                                        onChangeText={(Disease) => {
                                            setDisease(Disease)
@@ -56,8 +54,6 @@ export default function FarmDiaryScreen() {
                             <TextInput style={styles.from3}
                                        placeholder='  Công việc'
                                        placeholderTextColor='#000000'
-                                       multiline={true}
-                                       numberOfLines={4}
                                        value={Work}
                                        onChangeText={(Work) => {
                                            setWork(Work)
@@ -66,8 +62,6 @@ export default function FarmDiaryScreen() {
                             <TextInput style={styles.from3}
                                        placeholder='  Sử dụng thuốc trừ sâu, phân bón'
                                        placeholderTextColor='#000000'
-                                       multiline={true}
-                                       numberOfLines={4}
                                        value={Supplies}
                                        onChangeText={(Supplies) => {
                                            setSupplies(Supplies)
@@ -158,11 +152,11 @@ const styles = StyleSheet.create({
 
     from3: {
         marginTop: 30,
-        height: 70,
+        height: 45,
         borderRadius: 15,
         justifyContent: "flex-start",
         backgroundColor: '#fff',
-        width: "90%",
+        width: "100%",
         marginLeft: 20,
         fontSize: 18,
         shadowColor: "#000",
@@ -180,7 +174,7 @@ const styles = StyleSheet.create({
         shadowColor: "#000",
         shadowOpacity: 0.3,
         shadowRadius: 10,
-        width: 140,
+        width: 130,
         marginLeft: 16,
         borderRadius: 10,
     },

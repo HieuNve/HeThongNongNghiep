@@ -10,7 +10,8 @@ import Chao from "./screens/Chao";
 import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import NoteScreens from "./screens/NoteScreens";
+import NoteScreens from "./router_screen_home/NoteScreens";
+import User_Info from "./screens/User_Info";
 
 const Stack = createStackNavigator()
 export default function App() {
@@ -55,6 +56,7 @@ export default function App() {
                                   headerShown: false,
                               }}
                 />
+
             </Stack.Navigator>
         </NavigationContainer>
     );

@@ -1,5 +1,5 @@
 import {StatusBar} from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Alert, Button, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 import {MaterialIcons} from '@expo/vector-icons';
@@ -14,6 +14,8 @@ import MyTabs from "../tabnavigation/Tab_Navigation";
 export default function Login({navigation}) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+
+
     const loginButton = async () => {
 
         console.log({username})

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View} from "react-native";
+import {Alert, View, Modal} from "react-native";
 import {Text} from "react-native";
 import {ImageBackground, StyleSheet, Image} from "react-native";
 import {TouchableOpacity} from "react-native";
@@ -8,18 +8,22 @@ import in4 from "../assets/information.png"
 import logout from "../assets/logout.png"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function User_Info() {
+export default function User_Info({navigation}) {
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
-
+    const [modalVisible, setModalVisible] = useState(false);
     const logout = () => {
-        console.log("dddd")
+        setModalVisible(true)
+    }
+    const onlogout = () => {
+
         try {
-            AsyncStorage.removeItem('username')
+            AsyncStorage.clear()
         } catch (e) {
 
         }
-
+        setModalVisible(!modalVisible)
+        navigation.navigate("login")
     }
     const getData = async () => {
         try {
@@ -99,7 +103,52 @@ export default function User_Info() {
                         </View>
                     </View>
                 </TouchableOpacity>
+            </View>
+            <View style={styles.centeredView}>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                        setModalVisible(!modalVisible);
+                    }}>
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <Text>Bạn có chắc chắn đăng xuất không? </Text>
+                            <View style={{
+                                flex: 1,
+                                flexDirection: "row",
+                                alignItems: "center",
+                                paddingTop: 16,
+                                paddingBottom: 20
+                            }}>
+                                <View style={{flex: 1, alignItems: 'center'}}>
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            setModalVisible(!modalVisible)
+                                        }}
+                                    >
+                                        <View style={styles.DanhSach}>
+                                            <Text style={styles.titleButton}>Hủy</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={{flex: 1, alignItems: 'center'}}>
+                                    <TouchableOpacity
+                                        onPress={() => {
 
+                                            onlogout()
+                                        }}
+                                    >
+                                        <View style={styles.DanhSach}>
+                                            <Text style={styles.titleButton}>Đăng xuất</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
             </View>
         </View>
     );
@@ -193,6 +242,58 @@ const styles = StyleSheet.create({
         width: 22,
         height: 22,
         marginRight: 10
-    }
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 22,
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2,
+    },
+    buttonOpen: {
+        backgroundColor: '#F194FF',
+    },
+    buttonClose: {
+        backgroundColor: '#2196F3',
+    },
+    textStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    modalText: {
+        marginBottom: 15,
+        textAlign: 'center',
+    },
+    DanhSach: {
+        alignItems: "center",
+        padding: 16,
+        backgroundColor: "#e7963d",
+        shadowColor: "#000",
+        shadowOpacity: 0.3,
+        shadowRadius: 10,
+        width: 130,
+        marginLeft: 16,
+        borderRadius: 10,
+    },
 });
 
