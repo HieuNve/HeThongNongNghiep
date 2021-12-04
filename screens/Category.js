@@ -147,7 +147,7 @@ export default function Category({navigation}) {
                                            keyboardType='Tên Vườn'
                                            placeholder='  Tên Vườn'
                                            placeholderTextColor='#ffffff'
-                                           textAlign='center'
+
                                            value={farm_name}
                                            onChangeText={(farmName) => {
                                                setFarm_name(farmName)
@@ -169,7 +169,7 @@ export default function Category({navigation}) {
                                            placeholder=' Diện tích'
 
                                            placeholderTextColor='#ffffff'
-                                           textAlign='center'
+
                                            value={area}
                                            onChangeText={(Area) => {
                                                setArea(Area)
@@ -182,7 +182,7 @@ export default function Category({navigation}) {
                                            placeholder='  Vị trí'
 
                                            placeholderTextColor='#ffffff'
-                                           textAlign='center'
+
                                            value={location}
                                            onChangeText={(Location) => {
                                                setLocation(Location)
@@ -196,7 +196,7 @@ export default function Category({navigation}) {
                                            placeholder='  ID thiết bị'
 
                                            placeholderTextColor='#ffffff'
-                                           textAlign='center'
+
                                            value={id_device}
                                            onChangeText={(IdDevice) => {
                                                setIdDevice(IdDevice)
@@ -324,7 +324,6 @@ const styles = StyleSheet.create({
         marginTop: 30,
         height: 45,
         backgroundColor: '#94c876',
-        borderRadius: 15,
         width: "90%",
         marginLeft: 20,
         fontSize: 18,
@@ -343,7 +342,7 @@ const pickerSelectStyles = StyleSheet.create({
         marginTop: 30,
         height: 45,
         backgroundColor: '#94c876',
-        borderRadius: 15,
+
         width: "90%",
         marginLeft: 20,
         fontSize: 18,
@@ -359,7 +358,6 @@ const pickerSelectStyles = StyleSheet.create({
         marginTop: 30,
         height: 45,
         backgroundColor: '#94c876',
-        borderRadius: 15,
         width: "90%",
         marginLeft: 20,
         fontSize: 18,
@@ -375,7 +373,7 @@ const pickerSelectStyles = StyleSheet.create({
         marginTop: 30,
         height: 45,
         backgroundColor: '#94c876',
-        borderRadius: 15,
+
         width: "90%",
         marginLeft: 20,
         fontSize: 18,
