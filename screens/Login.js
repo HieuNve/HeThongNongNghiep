@@ -9,17 +9,19 @@ import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NavigationContainer} from "@react-navigation/native";
 import MyTabs from "../tabnavigation/Tab_Navigation";
+import {GlobalContext} from "../Context/Provider";
 
 
 export default function Login({navigation}) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-
+    const {name, setName, uuid, setUuid, setPhone, setLogin} = React.useContext(GlobalContext)
 
     const loginButton = async () => {
 
         console.log({username})
         console.log({password})
+
         if (username.length === 0 && password.length === 0) {
             Alert.alert("Bạn chưa nhập tải khoản, mật khẩu")
 
@@ -42,6 +44,10 @@ export default function Login({navigation}) {
                 if (res.data.success === 1) {
                     let phone = res.data.phoneNumber
                     let uuid = res.data.uuid
+                    setName(username)
+                    setUuid(uuid)
+                    setPhone(phone)
+                    setLogin(false)
                     storeData(username, password, phone, uuid)
                     console.log("đăng nhập thành công")
                     navigation.navigate("tab")
@@ -123,17 +129,17 @@ export default function Login({navigation}) {
                                                   loginButton()
                                               }}
                             >
-                                <Text style={styles.buttonText}>Sign In</Text>
+                                <Text style={styles.buttonText}>Đăng Nhập</Text>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.action}>
-                            <Text style={styles.donthave}>Don't have an account ?
+                            <Text style={styles.donthave}>Bạn chưa có tài khoản ?
                                 <TouchableOpacity
                                     onPress={() => {
                                         ToSignUp()
                                     }}
                                 >
-                                    <Text style={styles.actionbuttonText}> Sign Up</Text>
+                                    <Text style={styles.actionbuttonText}> Đăng Ký</Text>
                                 </TouchableOpacity>
                             </Text>
                         </View>
@@ -148,7 +154,6 @@ export default function Login({navigation}) {
 
 const styles = StyleSheet.create({
     container: {
-
         flex: 1,
         backgroundColor: "#67ad3d"
 

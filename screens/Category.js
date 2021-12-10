@@ -17,6 +17,8 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import RNPickerSelect from "react-native-picker-select";
 import logo from "../assets/logo.png";
+import {ScreenOrientationTypes} from "react-native-screens";
+import {GlobalContext} from "../Context/Provider";
 
 
 const list = [
@@ -41,6 +43,7 @@ export default function Category({navigation}) {
     const [location, setLocation] = useState("")
     const [area, setArea] = useState("")
     const [id_device, setIdDevice] = useState("")
+    const {uuid} = React.useContext(GlobalContext)
 
     const getCurrentDate = () => {
 
@@ -53,18 +56,18 @@ export default function Category({navigation}) {
         return date + '-' + month + '-' + year;//format: dd-mm-yyyy;
     }
 
-    const getData = async () => {
-        try {
-            const idUsers = await AsyncStorage.getItem('id')
-            console.log(idUsers)
-            if (idUser != null) {
-                setIdUser(idUsers)
-            }
-
-        } catch (e) {
-            // error reading value
-        }
-    }
+    // const getData = async () => {
+    //     try {
+    //         const idUsers = await AsyncStorage.getItem('id')
+    //         console.log(idUsers)
+    //         if (idUser != null) {
+    //             setIdUser(idUsers)
+    //         }
+    //
+    //     } catch (e) {
+    //         // error reading value
+    //     }
+    // }
 
     const list_tree = [
         {label: 'cà chua', value: '2'},
@@ -80,11 +83,11 @@ export default function Category({navigation}) {
 
 
     useEffect(() => {
-        getData()
+        // getData()
         const request_farm = async () => {
             const result = await axios({
                 method: 'get',
-                url: `http://159.223.56.85/api/farm/${idUser}`,
+                url: `http://159.223.56.85/api/farm/${uuid}`,
                 headers: {},
             })
             console.log(result)
@@ -110,6 +113,7 @@ export default function Category({navigation}) {
         console.log({area})
         console.log({id_device})
         console.log({time})
+        console.log({uuid})
 
         if (farm_name.length <= 0 || location.length <= 0 || area.length <= 0 || id_device <= 0 || id_tree <= 0) {
             console.log("no")
@@ -121,7 +125,7 @@ export default function Category({navigation}) {
                     url: "http://159.223.56.85/api/farm",
                     headers: {},
                     data: {
-                        personID: idUser,
+                        personID: uuid,
                         deviceID: 1,
                         treeID: id_tree,
                         farmName: farm_name,
@@ -170,8 +174,17 @@ export default function Category({navigation}) {
 
 
                             />)}
+
                     </ScrollView>
-                ) : null
+                ) : (
+                    <ScrollView>
+                        <CategoryListItem location={"hà noioij"}
+                                          area={"50"}
+                                          name={"Cà chua"}
+                                          time_start={"20/12/12"}
+                        />
+                    </ScrollView>
+                )
             }
 
             <View style={styles.centeredView}>

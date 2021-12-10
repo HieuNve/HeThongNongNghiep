@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textAlign: "center",
         paddingTop: 10,
-        color: "#fff"
+        color: "#000000"
     },
     categoryImg: {
         width: 50,
@@ -177,7 +177,6 @@ const styles = StyleSheet.create({
     },
     detailScreen: {
         flex: 1,
-        backgroundColor: '#89c263',
     },
     headerDeatail: {
         flex: 1,
