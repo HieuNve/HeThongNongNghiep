@@ -50,27 +50,11 @@ export default function Category({navigation}) {
         let date = new Date().getDate();
         let month = new Date().getMonth() + 1;
         let year = new Date().getFullYear();
-
-        //Alert.alert(date + '-' + month + '-' + year);
-        // You can turn it in to your desired format
-        return date + '-' + month + '-' + year;//format: dd-mm-yyyy;
+        return date + '-' + month + '-' + year;
     }
 
-    // const getData = async () => {
-    //     try {
-    //         const idUsers = await AsyncStorage.getItem('id')
-    //         console.log(idUsers)
-    //         if (idUser != null) {
-    //             setIdUser(idUsers)
-    //         }
-    //
-    //     } catch (e) {
-    //         // error reading value
-    //     }
-    // }
-
     const list_tree = [
-        {label: 'cà chua', value: '2'},
+        {label: 'cà chua', value: '1'},
         {label: 'cà chua1', value: '3'},
         {label: 'cà chua2', value: '4'},
         {label: 'cà chua3', value: '5'},
@@ -84,6 +68,10 @@ export default function Category({navigation}) {
 
     useEffect(() => {
         // getData()
+        getFarm()
+    }, [uuid])
+
+    const getFarm = () => {
         const request_farm = async () => {
             const result = await axios({
                 method: 'get',
@@ -103,7 +91,7 @@ export default function Category({navigation}) {
             }
         }).catch((error) => {
         })
-    }, [idUser])
+    }
 
     const addFarm = () => {
         let time = getCurrentDate()
@@ -144,6 +132,7 @@ export default function Category({navigation}) {
                     Alert.alert("thêm thành công")
                     console.log("thêm thành công")
                     setModalVisible(!modalVisible)
+                    getFarm()
                 } else {
                     console.log("Thêm không thành công")
                 }

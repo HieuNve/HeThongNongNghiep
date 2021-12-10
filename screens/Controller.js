@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Switch, TouchableOpacity} from "react-native";
 import {Text} from "react-native";
-import logo from "../assets/logo.png"
+import logo from "../assets/logo_black.png"
 import motor from "../assets/motor.png"
 import light from "../assets/lightbulb.png"
 import {Image} from "react-native";
@@ -187,7 +187,6 @@ export default function Controller({navigation}) {
 const styles = StyleSheet.create({
     container: {
         flex: 7,
-        backgroundColor: '#89c263',
         alignItems: 'center',
         justifyContent: 'space-between',
 

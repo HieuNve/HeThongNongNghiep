@@ -74,26 +74,27 @@ const CustomDrawer = (props) => {
     return (
         <View>
             <UserView/>
-            <DrawerContentScrollView>
-                <DrawerItemList {...props}
-                                activeTinColor={"green"}
-                />
-                <DrawerItem
-                    label={"Đăng Xuất"}
-                    onPress={() => {
-                        Logout()
-                    }}
-                    icon={({size, color}) => (
-                        <Image source={logout}
-                               style={{
-                                   width: 20,
-                                   height: 20
-                               }}
-                        />
-                    )}
-                />
-            </DrawerContentScrollView>
+            <DrawerContentScrollView {...props}>
 
+
+            </DrawerContentScrollView>
+            <DrawerItemList {...props}
+                            activeTinColor={"green"}
+            />
+            <DrawerItem
+                label={"Đăng Xuất"}
+                onPress={() => {
+                    Logout()
+                }}
+                icon={({size, color}) => (
+                    <Image source={logout}
+                           style={{
+                               width: 20,
+                               height: 20
+                           }}
+                    />
+                )}
+            />
         </View>
     );
 }
